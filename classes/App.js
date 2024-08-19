@@ -8,13 +8,14 @@ export default class App {
         // a while-loop that let us play the game repeatedly
         while (true) {
             this.createPlayers();
-            this.board = new Board();
+           /* this.board = new Board();
             this.startGameLoop();
             this.whoHasWonOnGameOver();
             // ask if we should play again
             console.log('');
             let playAgain = prompt('Vill ni spela igen? (ja/nej)? ');
-            if (playAgain !== 'ja') { break; }
+            if (playAgain !== 'ja') { break; }*/
+            break;
         }
     }
 
@@ -43,13 +44,13 @@ export default class App {
             this.board.render();
             let player = this.board.currentPlayerColor === 'X'
                 ? this.playerX : this.playerO;
-            let move = prompt(
-                `Ange ditt drag ${player.color} ${player.name} - skriv in rad: `
-            );
+            let column = prompt(
+                `Ange ditt drag ${player.color} ${player.name} - skriv in column: `
+            )-1; 
             // convert row and columns to numbers and zero-based indexes
-            let [row, column] = move.split(',').map(x => +x.trim() - 1);
+           // let [row, column] = move.split(',').map(x => +x.trim() - 1);
             // try to make the move
-            this.board.makeMove(player.color, row, column);
+            this.board.makeMove(player.color, column);
         }
     }
 
