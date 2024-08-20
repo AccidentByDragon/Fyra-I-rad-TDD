@@ -4,7 +4,7 @@ import Board from './Board.js'
 export default class App {
   constructor() {
     this.keepPlaying = true;
-    while (keepPlaying === true) {
+    while (this.keepPlaying === true) {
       this.board = new Board()
       //resten av appens logik ska vara här
       this.keepPlaying = this.boardReset()
