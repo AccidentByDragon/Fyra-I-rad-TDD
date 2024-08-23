@@ -77,7 +77,7 @@ export default class Board {
         }
         
 
-       /* winCheck() {
+        winCheck() {
             let m = this.matrix;
             let rows = m.length;
             let cols = m[0].length;
@@ -148,6 +148,6 @@ export default class Board {
     drawCheck() {
         // if no one has won and no empty positions then it's a draw
         return !this.winCheck() && !this.matrix.flat().includes(' ');
-    }*/
+    }
 
 }

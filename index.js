@@ -1,2 +1,3 @@
 import App from './classes/App.js';
-new App();
+let app = new App();
+app.start()
