@@ -11,6 +11,7 @@ test('The Board should ask if the player wishes to restart'), () => {
   // setting mocked answers
   setMockAnswers('nej');
   // checking program asks the correct questions
+  let app = new App();
   expect(promptQuestions[0]).toBe('Vill ni spela igen? (ja/nej)? ')
 }
 
