@@ -8,13 +8,13 @@ export default class App {
         // a while-loop that let us play the game repeatedly
         while (true) {
             this.createPlayers();
-           /* this.board = new Board();
+            this.board = new Board();
             this.startGameLoop();
             this.whoHasWonOnGameOver();
             // ask if we should play again
             console.log('');
             let playAgain = prompt('Vill ni spela igen? (ja/nej)? ');
-            if (playAgain !== 'ja') { break; }*/
+            if (playAgain !== 'ja') { break; }
             break;
         }
     }
