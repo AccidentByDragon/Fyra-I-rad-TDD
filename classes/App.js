@@ -3,14 +3,22 @@ import Board from './Board.js'
 
 export default class App {
   constructor() {
+
+  }
+
+startApp() {
     this.keepPlaying = true;
     while (this.keepPlaying === true) {
-      this.board = new Board()
+      this.board = this.createBoard()
       //resten av appens logik ska vara här
       this.keepPlaying = this.boardReset()
     }
-  }
+}
 
+createBoard() {
+  let tempBoard = new Board();
+  return tempBoard
+}
 
 boardReset() {
   let playAgain = prompt('Vill ni spela igen? (ja/nej)? ');
