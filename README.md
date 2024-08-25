@@ -18,3 +18,13 @@ Arbeta objektorienterat i JavaScript och med Vitest/Jest som testverktyg.
 ### Som användare vill jag efter avslutat spel få frågan om vi (jag och den andra användaren) vill spela igen. Om vi svarar ja vill jag att ett nytt spel ska starta (med ett tomt bräde) så att vi kan spela igen.
 ### Som systemägare vill jag att programmet skrivs objektorienterat så att kodbasen blir enklel att underhålla.
 ### Som systemägare vill jag att alla metoder i alla klasser testas med unit-tester, så att vi vet att logik och delmängder av programmet fungerar som de ska. (Kanske är detta en delmängd i varje user-story, “att testa”, snarare än en egen user story?)
+
+Kira. User story 2
+Som användare vill jag kunna göra mitt drag så att det registreras korrekt på spelbrädet, dvs. välja en kolumn att lägga min bricka i.
+
+Tests:
+Spelare måste ha möjlighet att välja drag
+Spelare måste ha måglighet välja bara column
+Drag måste regestreras på valde plats
+Bricka skulle falla ner till lägsta tom plats i valda column
+Column kan skrivas bara med cifror
