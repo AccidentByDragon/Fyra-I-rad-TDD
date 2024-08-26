@@ -119,7 +119,6 @@ test('Spelare kan göra drag bara i valid column (1-7) ', () => {
 
 
   test('Spelare kan inte göra drag utan valid column (<1-7>)', () => {
-
     
       let  board = new Board();
      
@@ -136,14 +135,16 @@ test('Spelare kan göra drag bara i valid column (1-7) ', () => {
   test('should place bricka in the lowest empty row of the selected column', () => {
     let board = new Board
     // Drop the first piece into column 3
-    board.makeMove('X', 3);
-    expect(board.matrix[5][3]).toBe('X'); // The piece should be in the bottom-most row (index 5) of column 3
-
+    board.makeMove('X', 0);
+    expect(board.matrix[5][0]).toBe('X'); // The piece should be in the bottom-most row (index 0) of column 3
+log(board.matrix)
     // Drop the second piece into the same column
-    board.makeMove('O', 3);
-    expect(board.matrix[4][3]).toBe('O'); // The piece should be placed on top of the first piece (index 4)
+    board.makeMove('O', 0);
+    expect(board.matrix[4][0]).toBe('O'); // The piece should be placed on top of the first piece (index 1)
 
     // Drop a third piece into the same column
-    board.makeMove('X', 3);
-    expect(board.matrix[3][3]).toBe('X'); // The piece should be placed on top of the second piece (index 3)
+    board.makeMove('X', 0);
+    expect(board.matrix[3][0]).toBe('X'); // The piece should be placed on top of the second piece (index 2)
+    log(board.matrix)
   });
+
