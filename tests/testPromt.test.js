@@ -127,14 +127,13 @@ test('Spelare kan göra drag bara i valid column (1-7) ', () => {
     expect(board.makeMove('X', 7)).toBe(false);
     
     // Check the board state to ensure no moves were made
-    //const initialState = [...board.matrix];
     expect(board.matrix).toEqual([...board.matrix]); // No change in the board state
   });
 
 
-  test('should place bricka in the lowest empty row of the selected column', () => {
+  test('Bricka skulle falla ner till lägsta tom plats i valda column', () => {
     let board = new Board
-    // Drop the first piece into column 3
+    // Drop the first piece into column 0
     board.makeMove('X', 0);
     expect(board.matrix[5][0]).toBe('X'); // The piece should be in the bottom-most row (index 0) of column 3
 log(board.matrix)
