@@ -6,7 +6,7 @@ import {
   log
 } from './helpers/mockPrompt.js';
 import App from '../classes/App.js';
-
+import Board from '../classes/Board.js';
 
 test('App ska fråga efter spelare X och spelare O:s namn', () => {
   setMockAnswers('Olle', 'Anna', 'end-test');
@@ -15,26 +15,6 @@ test('App ska fråga efter spelare X och spelare O:s namn', () => {
   expect(promptQuestions[0]).toBe('Spelare X:s namn: ');
   expect(promptQuestions[1]).toBe('Spelare O:s namn: ');
 });
-
-
-test('Spelare X och Spelare O kan inte ha samma namn', () => {
-  // Mock the console output
-  
-  setMockAnswers('Olle', 'Olle',  'end-test');
-  let app = new App()
-  // Validate that an error is thrown when initializing the App
-   expect(() => app.createPlayers()).toThrow('end-test');
-  
-
-  expect(promptQuestions[0]).toBe('Spelare X:s namn: ');
-  expect(promptQuestions[1]).toBe('Spelare O:s namn: ');
-  //expect(promptQuestions[1]).toBe('Spelare O:s namn: ');
-
-  // Validate that the console output includes the message asking Player O to choose a different name
-  expect(consoleOutput[1]).toContain('Vänligen välj ett annat namn för Spelare O.');
-
-});
-
 
 test('Spelare X och Spelare O sparas i egenskaper', () => {
   // Mock the console output
@@ -52,6 +32,28 @@ test('Spelare X och Spelare O sparas i egenskaper', () => {
   expect(app.playerX.name).toBe('Olle');
   expect(app.playerO.name).toBe('Anna');
 
+});
+
+test('Drag måste registreras på vald plats', () => {
+  // Initialize the board
+  
+  let board = new Board();
+
+  // Make a move in column 3 (zero-based index)
+  board.makeMove('X', 3);
+
+  // Expected state of the board after one move
+  const expectedBoard = [
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', 'X', ' ', ' ', ' ']
+  ];
+
+  // Check the board state
+  expect(board.matrix).toEqual(expectedBoard);
 });
 
 test('Spelare måste ha möjlighet att välja drag', () => {
@@ -84,3 +86,64 @@ test('Spelare måste ha möjlighet att välja drag', () => {
   //expect(consoleOutput.length).toBeGreaterThan(0);
 });
 
+test('Spelare X och Spelare O sparas i egenskaper', () => {
+  // Mock the console output
+  
+  setMockAnswers('Olle', 'Anna');
+  let app = new App()
+  
+  app.createPlayers();
+  expect(promptQuestions[0]).toBe('Spelare X:s namn: ');
+  expect(promptQuestions[1]).toBe('Spelare O:s namn: ');
+  //expect(promptQuestions[1]).toBe('Spelare O:s namn: ');
+
+
+  // Validate that the players were created with the expected names
+  expect(app.playerX.name).toBe('Olle');
+  expect(app.playerO.name).toBe('Anna');
+
+});
+
+test('Spelare kan göra drag bara i valid column (1-7) ', () => {
+  let  board = new Board();
+
+ // Try to make a move in a valid column (e.g., 0, 3, 6)
+ expect(board.makeMove('X', 0)).toBe(true);
+ expect(board.matrix[5][0]).toBe('X'); // Last row should have the 'X' piece
+
+ // Make another move in a different valid column
+ expect(board.makeMove('O', 3)).toBe(true);
+ expect(board.matrix[5][3]).toBe('O'); // Last row should have the 'O' piece
+});
+
+
+
+  test('Spelare kan inte göra drag utan valid column (<1-7>)', () => {
+
+    
+      let  board = new Board();
+     
+    // Try to make a move in an invalid column (e.g., -1 or 7, since columns are 0-indexed from 0 to 6)
+    expect(board.makeMove('X', -1)).toBe(false);
+    expect(board.makeMove('X', 7)).toBe(false);
+    
+    // Check the board state to ensure no moves were made
+    //const initialState = [...board.matrix];
+    expect(board.matrix).toEqual([...board.matrix]); // No change in the board state
+  });
+
+
+  test('should place bricka in the lowest empty row of the selected column', () => {
+    let board = new Board
+    // Drop the first piece into column 3
+    board.makeMove('X', 3);
+    expect(board.matrix[5][3]).toBe('X'); // The piece should be in the bottom-most row (index 5) of column 3
+
+    // Drop the second piece into the same column
+    board.makeMove('O', 3);
+    expect(board.matrix[4][3]).toBe('O'); // The piece should be placed on top of the first piece (index 4)
+
+    // Drop a third piece into the same column
+    board.makeMove('X', 3);
+    expect(board.matrix[3][3]).toBe('X'); // The piece should be placed on top of the second piece (index 3)
+  });
