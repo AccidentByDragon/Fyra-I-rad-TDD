@@ -28,7 +28,11 @@ beforeEach(() => {
         // remember the question the program sends to prompt
         promptQuestions.push(question);
         // return a mock answers to the program
-        return mockAnswers.shift();
+       let nextAnswer = mockAnswers.shift();
+        if (nextAnswer === 'end-test') {
+          throw new Error('end-test');
+          }
+        return nextAnswer;
       }
     }
   });

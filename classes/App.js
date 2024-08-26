@@ -16,7 +16,7 @@ startApp() {
 }
 
 createBoard() {
-  let tempBoard = new Board();
+  let tempBoard = new Board().matrix;
   return tempBoard
 }
 
