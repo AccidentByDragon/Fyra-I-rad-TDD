@@ -1,9 +1,3 @@
-export default class Player {
 
-  constructor(name, color) {
-    this.name = name;
-    this.color = color;
-  }
-
-}
-  
+import PromptSync from 'prompt-sync';
+export default PromptSync({ sigint: true });

@@ -59,6 +59,3 @@ Se till att kör alla tester för att verifiera att de nya ändringarna fungerar
 
 
 
-# kolla kiras kod - går den alla diagonalter 
-
-jdsnvkjdsnjkdsnvjks

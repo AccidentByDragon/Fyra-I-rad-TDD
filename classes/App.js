@@ -1,4 +1,6 @@
-  import prompt from '../helpers/prompt.js';
+// Se över om jag ens behöver denna innan merge:a
+
+import prompt from '../helpers/prompt.js';
   import Board from './Board.js';
   import Player from '../classes/Player.js';
 
@@ -6,18 +8,8 @@
   export default class App {
 
     constructor() {
-      // a while-loop that let us play the game repeatedly
-      while (true) {
-        this.createPlayers();
-        this.board = new Board();
-        this.startGameLoop();
-        this.whoHasWonOnGameOver();
-        // ask if we should play again
-        console.log('');
-        let playAgain = prompt('Vill ni spela igen? (ja/nej)? ');
-        if (playAgain !== 'ja') { break; }
-        break;
-      }
+     
+      
     }
 
 
@@ -25,10 +17,10 @@
       console.clear();
       console.log('Fyra i rad\n');
 
-      // Create Player X
+      
       this.playerX = new Player(prompt('Spelare X:s namn: '), 'X');
 
-      // Loop until Player O's name is different from Player X's name
+    
       do {
         this.playerO = new Player(prompt('Spelare O:s namn: '), 'O');
         if (this.playerO.name === this.playerX.name) {
@@ -39,7 +31,7 @@
 
 
     startGameLoop() {
-      // game loop - runs until the game is over
+      // game loop
       while (!this.board.gameOver) {
         console.clear();
         this.board.render();
@@ -48,15 +40,13 @@
         let column = prompt(
           `Ange ditt drag ${player.color} ${player.name} - skriv in column: `
         ) - 1;
-        // convert row and columns to numbers and zero-based indexes
-        // let [row, column] = move.split(',').map(x => +x.trim() - 1);
-        // try to make the move
+        
         this.board.makeMove(player.color, column);
       }
     }
 
     whoHasWonOnGameOver() {
-      // the game is over, tell the player who has one or if we have a draw
+      // the game is over
       console.clear();
       this.board.render();
       if (this.board.winner) {
