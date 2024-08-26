@@ -38,7 +38,7 @@ Implementera metoden enligt kraven ovan och kör de enhetstester som tidigare sk
 (TDD-processen innebär att du först ser till att testerna misslyckas (eftersom ingen vinstlogik ännu finns implementerad), därefter implementerar du den nödvändiga logiken och kör testerna igen för att verifiera att de nu går igenom)
 
 
-## TEST 4C PROGRAMMET SKA VERÄTTA VILKEN SPELAR SOM HAR VUNNIT
+## TEST 4C PROGRAMMET SKA BERÄTTA VILKEN SPELAR SOM HAR VUNNIT
 
 # Steg 1: Identifiera vinnande spelare
 
