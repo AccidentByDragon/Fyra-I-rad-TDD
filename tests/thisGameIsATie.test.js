@@ -2,11 +2,15 @@ import { expect, test } from 'vitest'
 import {promptQuestions, consoleOutput,setMockAnswers,log
        } from './helpers/mockPromptAndConsoleLog.js'
 import Board from '../classes/Board.js'
+import App from '../classes/App.js'
 
 
-test('Play all the positions on the board for a tie',
+test('Check that it is a draw when all the positions on the board are played without a win',
   () => {
-    expect(app.board.matrix).toEqual([
+
+    let app = new App
+    
+    expect(app.itIsATie()).toEqual([
       ['O', 'O', 'O', 'X', 'X', 'X', 'O'],
       ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
       ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
@@ -16,10 +20,14 @@ test('Play all the positions on the board for a tie',
     ])
   })
 
-test('Check if the game is a tie', () => {
-  let aBoard = new Board()
-  expect(!aBoard.matrix.flat()).not.includes(' ')
-})
+
+
+
+
+// test('Check if the game is a tie', () => {
+//   let aBoard = new Board()
+//   expect(!aBoard.matrix.flat()).not.includes(' ')
+// })
 
 
 

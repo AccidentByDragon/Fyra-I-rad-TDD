@@ -3,7 +3,7 @@ export default class Board {
   constructor() {
     this.matrix = [...new Array(6)]
       .map(row => [...new Array(7)].map(column => ' '))
-    
+   
     this.isADraw = false
   }
 
