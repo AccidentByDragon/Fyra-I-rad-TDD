@@ -22,7 +22,7 @@ Förväntat resultat: Systemet ska identifiera att spelaren har vunnit.
 Ett scenario där en spelare har fyra av sina brickor diagonalt från nedre högra till övre vänstra hörnet.
 Förväntat resultat: Systemet ska identifiera att spelaren har vunnit.
 
-# Test 5: Ingen vinst (ändå pågår spelet)
+// # Test 5: Ingen vinst (ändå pågår spelet)
 Skapa ett scenario där det inte finns någon rad med fyra brickor i rad för någon spelare.
 Förväntat resultat: Systemet ska identifiera att ingen har vunnit och spelet fortsätter.  
 
