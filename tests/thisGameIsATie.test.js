@@ -5,11 +5,11 @@ import Board from '../classes/Board.js'
 import App from '../classes/App.js'
 
 
-test('Check that it is a draw when all the positions on the board are played without a win',
+// 1) Testar att alla brickor är spelade utan vinst.
+test('Check that the game is a draw when all the positions on the board are played without a win',
   () => {
-
     let app = new App
-    
+   
     expect(app.itIsATie()).toEqual([
       ['O', 'O', 'O', 'X', 'X', 'X', 'O'],
       ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
@@ -20,17 +20,9 @@ test('Check that it is a draw when all the positions on the board are played wit
     ])
   })
 
-
-
-
-
-// test('Check if the game is a tie', () => {
-//   let aBoard = new Board()
-//   expect(!aBoard.matrix.flat()).not.includes(' ')
-// })
-
-
-
-
-
-// return !this.winCheck() && !this.matrix.flat().includes(' ')
+// 2) Ska testa att rätt meddelande skickas om det blivit oavgjort.
+  test('Checking the correct massage when it is a draw game.', () => {
+    let app = new App
+    expect(app.winnerAtGameOver()).toBe('Spelet blev oavgjort')
+  })
+  

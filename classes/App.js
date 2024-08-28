@@ -6,7 +6,7 @@ export default class App {
     this.keepPlaying = true
     while (this.keepPlaying === true) {
       this.board = new Board()
-
+      this.winnerAtGameOver()
       this.keepPlaying = this.boardReset()
     }
   }
@@ -29,5 +29,17 @@ export default class App {
         ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
         ['O', 'X', 'O', 'X', 'O', 'X', 'O']
       ]
-    } 
+  } 
+  
+  winnerAtGameOver() {
+    // console.clear()
+    // this.board.render()
+    // if (this.board.winner) {
+    //   let winningPlayer = this.board.winner === 'X' ? this.playerX : this.playerO
+    //   console.log(`Grattis ${winningPlayer.name} till vinsten!!!`);
+    // } else {
+    //   console.log('Spelet blev oavgjort');
+    // }
+    console.log('Spelet blev oavgjort');
+  }
 }

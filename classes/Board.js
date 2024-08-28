@@ -3,6 +3,16 @@ export default class Board {
   constructor() {
     this.matrix = [...new Array(6)]
       .map(row => [...new Array(7)].map(column => ' '))
+
+    /* The code above draws the the folloing matrix:
+      this.matrix = [
+        [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      ] */
    
     this.isADraw = false
   }
