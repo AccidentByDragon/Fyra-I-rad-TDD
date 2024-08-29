@@ -12,10 +12,10 @@ function setBoardState(board, positions) {
 test('Horizontal win', () => {
   const board = new Board();
   setBoardState(board, [
-    { row: 3, col: 0, color: 'X' },
-    { row: 3, col: 1, color: 'X' },
-    { row: 3, col: 2, color: 'X' },
-    { row: 3, col: 3, color: 'X' }
+    { row: 5, col: 0, color: 'X' },
+    { row: 5, col: 1, color: 'X' },
+    { row: 5, col: 2, color: 'X' },
+    { row: 5, col: 3, color: 'X' }
   ]);
   expect(board.winCheck()).toBe('X');
 
@@ -24,10 +24,10 @@ test('Horizontal win', () => {
 test('Vertical win', () => {
   const board = new Board();
   setBoardState(board, [
+    { row: 5, col: 0, color: 'O' },
+    { row: 4, col: 0, color: 'O' },
     { row: 3, col: 0, color: 'O' },
-    { row: 2, col: 0, color: 'O' },
-    { row: 1, col: 0, color: 'O' },
-    { row: 0, col: 0, color: 'O' }
+    { row: 2, col: 0, color: 'O' }
   ]);
   expect(board.winCheck()).toBe('O');
 });
@@ -35,10 +35,10 @@ test('Vertical win', () => {
 test('Diagonal win (left to right)', () => {
   const board = new Board();
   setBoardState(board, [
-    { row: 3, col: 0, color: 'X' },
-    { row: 2, col: 1, color: 'X' },
-    { row: 1, col: 2, color: 'X' },
-    { row: 0, col: 3, color: 'X' }
+    { row: 5, col: 0, color: 'X' },
+    { row: 4, col: 1, color: 'X' },
+    { row: 3, col: 2, color: 'X' },
+    { row: 2, col: 3, color: 'X' }
   ]);
   expect(board.winCheck()).toBe('X');
 });
@@ -46,10 +46,10 @@ test('Diagonal win (left to right)', () => {
 test('Diagonal win (right to left)', () => {
   const board = new Board();
   setBoardState(board, [
-    { row: 3, col: 3, color: 'O' },
-    { row: 2, col: 2, color: 'O' },
-    { row: 1, col: 1, color: 'O' },
-    { row: 0, col: 0, color: 'O' }
+    { row: 5, col: 3, color: 'O' },
+    { row: 4, col: 2, color: 'O' },
+    { row: 3, col: 1, color: 'O' },
+    { row: 2, col: 0, color: 'O' }
   ]);
   expect(board.winCheck()).toBe('O');
 });
