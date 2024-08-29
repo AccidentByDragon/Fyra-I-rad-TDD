@@ -10,7 +10,7 @@ export function setMockAnswers(...answers) {
 
 export const log = console.log;
 
-beforeEach(() => {
+beforeEach(() => {  
   promptQuestions.length = 0;
 
   vi.mock('../../helpers/prompt.js', async () => {

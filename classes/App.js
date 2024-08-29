@@ -12,7 +12,6 @@ import prompt from '../helpers/prompt.js';
       
     }
 
-
     createPlayers() {
       console.clear();
       console.log('Fyra i rad\n');
@@ -20,7 +19,6 @@ import prompt from '../helpers/prompt.js';
       
       this.playerX = new Player(prompt('Spelare X:s namn: '), 'X');
 
-    
       do {
         this.playerO = new Player(prompt('Spelare O:s namn: '), 'O');
         if (this.playerO.name === this.playerX.name) {
