@@ -33,13 +33,13 @@ export default class App {
   
   winnerAtGameOver() {
     // console.clear()
-    // this.board.render()
+    // this.board.render(this.itIsATie())
     // if (this.board.winner) {
     //   let winningPlayer = this.board.winner === 'X' ? this.playerX : this.playerO
     //   console.log(`Grattis ${winningPlayer.name} till vinsten!!!`);
     // } else {
     //   console.log('Spelet blev oavgjort');
     // }
-    console.log('Spelet blev oavgjort');
+    return 'Spelet blev oavgjort';
   }
 }
