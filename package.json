@@ -2,7 +2,7 @@
   "name": "fyra-i-rad-tdd",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "Skapa logiken för ett fungerande Fyra i rad-spel (för två människospelare vid samma dator) - inget grafiskt gränssnitt.\r Arbeta enligt TDD (Test Driven Development) - bryt ner varje user story till deljarade tasks - dvs. detaljerade specifikationer av vilka klasser och metoder som ska skapas och hur de ska fungera. Skriv heltäckande enhetstester innan motsvarande programlogik.\r Arbeta objektorienterat i JavaScript och med Vitest/Jest som testverktyg.\r ### EPICS i kommande sprinter:\r #### Sprint 2: Skapa ett grafiskt användargränssnitt och testa det.\r #### Sprint 3: Skapa en regelbaserad AI och testa den.\r #### Sprint 4: Lägg till möjlighet att spela över nätverk och testa denna funktionalitet.",
   "main": "index.js",
   "scripts": {
     "test": "vitest"
@@ -15,5 +15,8 @@
   },
   "dependencies": {
     "prompt-sync": "^4.2.0"
+  },
+  "directories": {
+    "test": "tests"
   }
 }
