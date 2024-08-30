@@ -80,8 +80,9 @@ test('Spelare måste ha möjlighet att välja drag', () => {
   
   // Verify that a move was made in the specified column (column 3)
   // Depending on the implementation, you may want to check the board state or similar
-  //let board = app.board;
-  
+  let board = app.board;
+  expect(board.matrix[5][2]).toBe('X');
+
   // Optionally, you can also verify the log to check if the board was rendered
   //expect(consoleOutput.length).toBeGreaterThan(0);
 });
