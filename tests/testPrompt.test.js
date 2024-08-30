@@ -4,7 +4,7 @@ import {
   consoleOutput,
   setMockAnswers,
   log
-} from './helpers/mockPrompt.js';
+} from './helpers/mockPromptAndConsoleLog.js';
 import App from '../classes/App.js';
 import Board from '../classes/Board.js';
 
