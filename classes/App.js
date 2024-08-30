@@ -5,23 +5,23 @@ import Player from './Player.js';
 export default class App {
 
     constructor() {
-      
+        this.board = this.createBoard();
     }
 
-start(){
-      // a while-loop that let us play the game repeatedly
-      while (true) {
-        this.createPlayers();
-        this.board = this.createBoard()
-        this.startGameLoop();
-        this.whoHasWonOnGameOver();
-        // ask if we should play again
-        console.log('');
-        let playAgain = prompt('Vill ni spela igen? (ja/nej)? ');
-        if (playAgain !== 'ja') { break; }
-        break;
+    start(){
+        // a while-loop that let us play the game repeatedly
+        while (true) {
+            this.createPlayers();
+            this.startGameLoop();
+            this.whoHasWonOnGameOver();
+            // ask if we should play again
+            console.log('');
+            let playAgain = prompt('Vill ni spela igen? (ja/nej)? ');
+            if (playAgain !== 'ja') { break; }
+            break;
+        }
     }
-}
+
     createPlayers() {
         console.clear();
         console.log('Fyra i rad\n');
@@ -72,8 +72,7 @@ start(){
 
 
 createBoard() {
-  let tempBoard = new Board().matrix;
-  return tempBoard
+    return new Board();
 }
 
 boardReset() {
