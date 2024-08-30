@@ -12,7 +12,8 @@ start(){
       // a while-loop that let us play the game repeatedly
       while (true) {
         this.createPlayers();
-        this.board = this.createBoard()
+        this.board = new Board
+        //this.board = this.createBoard()
         this.startGameLoop();
         this.whoHasWonOnGameOver();
         // ask if we should play again
