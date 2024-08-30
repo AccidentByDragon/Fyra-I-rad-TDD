@@ -25,10 +25,10 @@ dvs. välja en kolumn att lägga min bricka i.
 
 Tests:
 ++Spelare måste ha möjlighet att välja drag
-++Spelare måste ha måglighet välja bara valid column
+++Spelare kan endast göra drag i tillgängliga kolumner (1-7)(och kan inte välja kolumner <1-7>)
 ++Drag måste regestreras på valde plats
-++Bricka skulle falla ner till lägsta tom plats i valda column
-!!!Cant meka a move if column is full
+++Bricka skulle falla ner till lägsta tom plats i valda kolumn
+
 
 
 
