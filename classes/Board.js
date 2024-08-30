@@ -1,5 +1,4 @@
 export default class Board {
-
     constructor() {
        
         // A slighly more complex way of generating the board
@@ -151,3 +150,4 @@ export default class Board {
     }
 
 }
+

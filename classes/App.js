@@ -12,7 +12,7 @@ start(){
       // a while-loop that let us play the game repeatedly
       while (true) {
         this.createPlayers();
-        this.board = new Board();
+        this.board = this.createBoard()
         this.startGameLoop();
         this.whoHasWonOnGameOver();
         // ask if we should play again
@@ -68,5 +68,23 @@ start(){
             console.log('Tyvärr det blev oavgjort...');
         }
     }
+
+
+
+createBoard() {
+  let tempBoard = new Board().matrix;
+  return tempBoard
+}
+
+boardReset() {
+  let playAgain = prompt('Vill ni spela igen? (ja/nej)? ');
+  if (playAgain !== 'ja')
+    {
+      return false;
+  }
+  else {
+    return true
+  }
+  }
 
 }
