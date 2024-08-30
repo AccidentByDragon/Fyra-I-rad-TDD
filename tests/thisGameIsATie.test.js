@@ -5,7 +5,6 @@ import {promptQuestions, consoleOutput,setMockAnswers,log
 import App from '../classes/App.js'
 
 
-// 1) Testar att alla brickor är spelade utan vinst.
 test('Check that the game is a draw when all the positions on the board are played without a win',
   () => {
     let app = new App
