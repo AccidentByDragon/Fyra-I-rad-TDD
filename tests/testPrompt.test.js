@@ -4,7 +4,7 @@ import {
   consoleOutput,
   setMockAnswers,
   log
-} from './helpers/mockPrompt.js';
+} from './helpers/mockPromptAndConsoleLog.js';
 import App from '../classes/App.js';
 import Board from '../classes/Board.js';
 
@@ -57,7 +57,40 @@ test('Drag måste registreras på vald plats', () => {
   expect(board.matrix).toEqual(expectedBoard);
 });
 
-test('Spelare kan endast göra drag i tillgängliga kolumner (1-7)', () => {
+test('Spelare måste ha möjlighet att välja drag', () => {
+  // Set up mock answers:
+  // - Player X's name
+  // - Player O's name
+  // - The column for the move (e.g., column 3)
+  // - Finally, set "end-test" to stop the game
+  setMockAnswers('Olle', 'Anna', '3', 'end-test');
+  
+  let app = new App();
+  
+  // We expect the game to throw 'end-test' to indicate it's time to stop testing
+  expect(() => app.start()).toThrow('end-test');
+  
+  // Verify that the game asked for Player X's name
+  expect(promptQuestions[0]).toBe('Spelare X:s namn: ');
+  
+  // Verify that the game asked for Player O's name
+  expect(promptQuestions[1]).toBe('Spelare O:s namn: ');
+  
+  // Verify that the game prompted Player X to make a move
+  expect(promptQuestions[2]).toBe('Ange ditt drag X Olle - skriv in column: ');
+  
+  // Verify that a move was made in the specified column (column 3)
+  // Depending on the implementation, you may want to check the board state or similar
+  let board = app.board;
+  expect(board.matrix[5][2]).toBe('X');
+
+  // Optionally, you can also verify the log to check if the board was rendered
+  //expect(consoleOutput.length).toBeGreaterThan(0);
+});
+
+
+
+test('Spelare kan göra drag bara i valid column (1-7) ', () => {
   let  board = new Board();
 
  // Try to make a move in a valid column (e.g., 0, 3, 6)

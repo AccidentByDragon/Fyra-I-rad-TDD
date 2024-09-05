@@ -27,7 +27,7 @@ test('The Board should reset itself if the player wishes to play again', () => {
   // checking program asks the correct questions
   //expect(promptQuestions[0]).toBe('Vill ni spela igen? (ja/nej)? ')
   // when answered yes the board should reset and be clear
-  expect(app.createBoard()).toEqual([
+  expect(app.createBoard().matrix).toEqual([
     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' ', ' ', ' '],
