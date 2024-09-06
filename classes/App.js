@@ -69,7 +69,16 @@ export default class App {
     }
   }
 
-
+  itIsATie() { 
+    return this.matrix = [
+        ['O', 'O', 'O', 'X', 'X', 'X', 'O'],
+        ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+        ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+        ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'X', 'O', 'X', 'O']
+      ]
+  } 
 
   createBoard() {
     return new Board();

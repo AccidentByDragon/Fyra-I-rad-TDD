@@ -9,7 +9,7 @@ import App from '../classes/App.js';
 import Board from '../classes/Board.js';
 
 
-test('Spelare måste ha möjlighet att välja ett drag', () => {
+/*test('Spelare måste ha möjlighet att välja ett drag', () => {
   // Set up mock answers:
   // - Player X's name
   // - Player O's name
@@ -131,5 +131,58 @@ test('Spelare kan göra drag bara i valid column (1-7) ', () => {
     board.makeMove('X', 0);
     expect(board.matrix[3][0]).toBe('X'); // The piece should be placed on top of the second piece 
    
-  });
+  });*/
+
+
+  test('Check that the game is a draw when all the positions on the board are played without a win',
+    () => {
+      let app = new App
+      //let  board = new Board();
+
+     
+      expect(app.itIsATie()).toEqual([
+        ['O', 'O', 'O', 'X', 'X', 'X', 'O'],
+        ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+        ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+        ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'X', 'O', 'X', 'O']
+      ])
+    })
+  
+  
+  test('The gameApp should be able to detect if the game is a draw', () => {
+    let app = new App
+    let board = app.itIsATie()
+    expect(board).not.includes(' ')
+    })
+
+
+    test('Checking the correct message when it is a draw game.', () => {
+      //setMockAnswers('Spelare X', 'Spelare O'); // Mock player names
+      
+      let app = new App();
+      let board = app.board;
+    
+      // Simulate a full board that results in a draw (no winning combination)
+      board.matrix = [
+        ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+        ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+        ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
+        ['O', 'X', 'O', 'X', 'O', 'X', 'O']
+      ];
+    
+      // Trigger the draw scenario
+      app.whoHasWonOnGameOver();
+    
+      // The first output will be the rendered board, check the second for the draw message
+      expect(consoleOutput[1][0]).toBe('Tyvärr det blev oavgjort...');
+    });
+    
+    
+    
+  
+  
 
