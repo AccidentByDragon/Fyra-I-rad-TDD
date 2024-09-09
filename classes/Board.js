@@ -38,7 +38,7 @@ export default class Board {
       row.map((cell, columnIndex) =>/*html*/`
         <div
           class="cell ${cell
-        + (this.latestMove[0] === rowIndex && this.latestMove[1] === columnIndex
+        + (this.latestMove[-1] === rowIndex && this.latestMove[1] === columnIndex
           ? 'latest move' : '')
         + (cell === ' ' && this.matrix[rowIndex + 1]?.[columnIndex] !== ''
             ? 'first-free' : '')
@@ -84,7 +84,7 @@ export default class Board {
    }
 
     // Place the piece in the lowest available row
-    this.latestMove = [row -1, column]
+    this.latestMove = [row, column]
     this.matrix[row -1][column] = this.currentPlayerColor;
 
     // Check if someone has won or if it's a draw/tie and update properties
