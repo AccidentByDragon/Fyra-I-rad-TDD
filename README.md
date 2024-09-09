@@ -55,3 +55,8 @@ Implementera den logik som behövs för att identifiera och returnera den vinnan
 Se till att kör alla tester för att verifiera att de nya ändringarna fungerar som avsett.
 
 
+Exaple from our branch, in Thomas express
+ "dependencies": {
+    "prompt-sync": "^4.2.0",
+    
+ }
