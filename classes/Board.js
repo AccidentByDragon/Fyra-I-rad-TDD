@@ -114,7 +114,7 @@ export default class Board {
   // loop through each player color, each position (row + column),
     // each winType/offsets and each offset coordinate added to the position
     // to check if someone has won :)
-    for (let color of 'RedYellow') {
+    for (let color of ['Red', 'Yellow']) {
       // r = row, c = column
       for (let r = 0; r < m.length; r++) {
         for (let c = 0; c < m[0].length; c++) {
