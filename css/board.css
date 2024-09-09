@@ -45,14 +45,14 @@
   background-color: white; 
 }
 
-.cell.X {
+.cell.Red {
   background-color: red; /* X cells filled with red */
   box-shadow: inset -0.1em 0.3em 10px #161618bc;
   border-top: solid 2px blue;
   border-bottom: solid 1.5px #ffffff76;
 }
 
-.cell.O {
+.cell.Yellow {
   background-color: yellow; /* O cells filled with yellow */
   box-shadow: inset -0.1em 0.3em 10px #161618bc;
   border-top: solid 2px blue;
