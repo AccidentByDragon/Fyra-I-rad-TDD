@@ -21,6 +21,7 @@ body {
   border-radius: 50%;
   border-top: solid 2px rgb(2, 2, 79);
   filter: drop-shadow(0.5px -1px 1px rgb(255 255 255 / 0.4));
+
 }
 
 .shadow {
@@ -72,7 +73,3 @@ body {
   box-shadow: inset 0px -5px 10px #16161854;
 }
 
-/* .falling {
-  animation-timing-function: cubic-bezier(0.83, 0.45, 0.96, 1.22);
-animation-duration: 0.4s;
-} */

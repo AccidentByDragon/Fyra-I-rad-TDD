@@ -21,7 +21,7 @@
     "vitest": "^2.0.5"
   },
   "dependencies": {
-    "prompt-sync": "^4.2.0"
+    "express": "^4.19.2"
   },
   "directories": {
     "test": "tests"
