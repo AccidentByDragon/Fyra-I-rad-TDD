@@ -8,3 +8,6 @@
 @import 'board.css';
 /* Dialogs */
 @import 'dialog.css';
+/* The play marker */
+@import 'marker.css';
+

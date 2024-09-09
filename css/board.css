@@ -20,6 +20,7 @@
 
 .cell {
   display: inline-block;
+  position: relative; /* Important for the positioning of :before content */
   width: 62px;
   height: 62px;
   margin: 6px 0px -4px 5px;
@@ -27,7 +28,6 @@
   border-radius: 50%;
   border-top: solid 2px rgb(2, 2, 79);
   filter: drop-shadow(0.5px -1px 1px rgb(255 255 255 / 0.4));
-  position: relative; /* Important for the positioning of :before content */
 
   &::before {
     content: '';
