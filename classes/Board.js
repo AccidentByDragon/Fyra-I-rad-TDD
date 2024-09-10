@@ -1,8 +1,8 @@
 import sleep from './helpers/sleep.js';
 
 // Game sounds
-const playSound = new Audio('./sound/plasticPlop.mp3');
-const winningSound = new Audio('./sound/katching.mp3');
+const playSound = new Audio('../public/sounds/plasticPlop.mp3');
+const winningSound = new Audio('../public/sounds/katching.mp3');
 
 export default class Board {
 
