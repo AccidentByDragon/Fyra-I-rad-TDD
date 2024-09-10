@@ -1,8 +1,9 @@
 import sleep from './helpers/sleep.js';
 
 // Game sounds
-const playSound = new Audio('../public/sounds/plasticPlop.mp3');
-const winningSound = new Audio('../public/sounds/katching.mp3');
+
+//const playSound = new Audio('../public/sounds/plasticPlop.mp3');
+//const winningSound = new Audio('../public/sounds/katching.mp3');
 
 export default class Board {
 
@@ -24,16 +25,17 @@ export default class Board {
   }
 
   // render = output/draw something
- render() {
-  globalThis.makeMoveOnClick = async (column) =>
-    (await this.makeMove(this.currentPlayerColor, column))
-    && this.app.render();
+  render() {
+    // then call the app render method
+    globalThis.makeMoveOnClick = async (column) =>
+      (await this.makeMove(this.currentPlayerColor, column))
+      && this.app.render();
 
-  // Apply current player color and game status attributes to the body
-  document.body.setAttribute('currentPlayerColor',
-    this.gameOver ? '' : this.currentPlayerColor);
-  document.body.setAttribute('gameInProgress',
-    this.app.namesEntered && !this.gameOver);
+    // so we can apply different styling depending on them
+    document.body.setAttribute('currentPlayerColor',
+      this.gameOver ? '' : this.currentPlayerColor);
+    document.body.setAttribute('gameInProgress',
+      this.app.namesEntered && !this.gameOver);
 
     // render the board as html
     return /*html*/`<div class="board">
@@ -44,9 +46,9 @@ export default class Board {
         + (this.latestMove[-1] === rowIndex && this.latestMove[1] === columnIndex
           ? 'latest move' : '')
         + (cell === ' ' && this.matrix[rowIndex + 1]?.[columnIndex] !== ''
-            ? 'first-free' : '')
+          ? 'first-free' : '')
         + (this.winningCombo.includes('row' + rowIndex + 'column' + columnIndex)
-              ? 'in-win' : '') 
+          ? 'in-win' : '')
         }"
           
           onclick="makeMoveOnClick(${columnIndex})">
@@ -55,8 +57,7 @@ export default class Board {
     </div>`;
   }
 
-
- /* async makeMove(color, column) {
+  async makeMove(color, column) {
 
     if (document.body.getAttribute('moveInProgress') === 'true') { return; }
     // Don't make any move if the game is over
@@ -89,7 +90,7 @@ export default class Board {
 
     // Place the piece in the lowest available row
     this.latestMove = [row, column]
-    this.matrix[row -1][column] = this.currentPlayerColor;
+    this.matrix[row - 1][column] = this.currentPlayerColor;
 
     playSound.play(); //Plays the drop sound
 
@@ -102,57 +103,11 @@ export default class Board {
     // Change the current player color
     !this.gameOver
       && (this.currentPlayerColor = this.currentPlayerColor === 'Red' ? 'Yellow' : 'Red');
-    
+
     // Return true if the move could be made
     document.body.setAttribute('moveInProgress', false);
     return true;
   }
-*/
-  async makeMove(color, column) {
-    
-    if (document.body.getAttribute('moveInProgress') === 'true') { return; }
-
-    if (this.gameOver || this.matrix[0][column] !== ' ') { return false; }
-
-    
-    if (color !== this.currentPlayerColor || isNaN(column)) { return false; }
-
-    document.body.setAttribute('moveInProgress', true);
-
-    
-    let row = 0;
-    while (row < 5 && this.matrix[row + 1][column] === ' ') {
-      // Place the piece temporarily in the current row for animation
-      this.matrix[row][column] = this.currentPlayerColor;
-      this.app.render();  
-      await sleep(150);   
-
-      this.matrix[row][column] = ' ';
-      row++;  
-    }
-
-  
-    this.matrix[row][column] = this.currentPlayerColor;
-
-
-    this.app.render();
-
-    
-    this.winner = this.winCheck();
-    this.isADraw = this.drawCheck();
-    this.gameOver = this.winner || this.isADraw;
-
-  
-    if (!this.gameOver) {
-      this.currentPlayerColor = this.currentPlayerColor === 'X' ? 'O' : 'X';
-    }
-
-  
-    document.body.setAttribute('moveInProgress', false);
-
-    return true;
-  }
-
 
 
   winCheck() {
