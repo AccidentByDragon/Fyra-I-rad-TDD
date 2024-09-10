@@ -1,29 +1,26 @@
 .board {
-  margin: 2px auto;
+  position: relative;
+  margin: 30px auto 2px;
   margin-top: 30px;
-  width: 500px;
+  padding: 10px;
+  width: 540px;
   height: 430px;
   background-color: blue;
+  z-index: 100;
 }
 
 @media (min-aspect-ratio: 0.8) {
-  & {
-    height: 60vh;
-  }
-}
+        & { height: 60vh; } }
 
 @media (min-aspect-ratio: 2) {
-  & {
-    height: 50vh;
-  }
-}
+        & { height: 50vh; } }
 
 .cell {
   display: inline-block;
   width: 62px;
   height: 62px;
-  margin: 6px 0px -4px 5px;
-  background-color: #fff; /* Initial white background */
+  margin: 1px 5px;
+  background-color: var(--Wall-Color); /* Initial white background */
   border-radius: 50%;
   border-top: solid 2px rgb(2, 2, 79);
   filter: drop-shadow(0.5px -1px 1px rgb(255 255 255 / 0.4));
@@ -42,59 +39,27 @@
     transition: opacity 0.3s ease;
   }
   
-  
-  /* Default white holes */
-  background-color: white; 
+  /* Default empty cells */
+  background-color: var(--Wall-Color); 
 }
 
-.cell.X {
-background-color: red;
-  /* X cells filled with red */
-  content: '4';
+.cell.Red {
+  background-color: red; /* X cells filled with red */
   box-shadow: inset -0.1em 0.3em 10px #161618bc;
   border-top: solid 2px blue;
   border-bottom: solid 1.5px #ffffff76;
-
 }
 
-.cell.O {
+.cell.Yellow {
   background-color: yellow; /* O cells filled with yellow */
-  content: '4';
   box-shadow: inset -0.1em 0.3em 10px #161618bc;
   border-top: solid 2px blue;
   border-bottom: solid 1.5px #ffffff76;
-  
 }
 
-.Xin-win {
-  background-color: red;
-  box-shadow: inset -0.1em 0.3em 10px #161618bc;
-}
-
-.Oin-win {
-  background-color: yellow;
-  box-shadow: inset -0.1em 0.3em 10px #161618bc;
-}
-
+/* Osäker på om den här används */
 .shadow {
   box-shadow: inset 0 0 10px #f8a100;
-}
-
-.marker {
-  position: relative;
-  border-radius: 50%;
-  box-shadow: inset -0.1em 0.3em 10px #161618bc;
-  border-top: solid 2px blue;
-  border-bottom: solid 1.5px #ffffff76;
-}
-
-.shaded-marker {
-  position: absolute;
-  margin: 9px 0 0 19px;
-  text-align: center;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 40px;
-  filter: drop-shadow(0.5px 1px 1px rgb(0 0 0 / 0.3));
 }
 
 .red {
@@ -116,7 +81,63 @@ background-color: red;
   background-color: blue;
 }
 
-#under {
+.Redin-win {
+  background-color: red;
+  box-shadow: inset -0.1em 0.3em 10px #161618bc;
+  animation: blink 1300ms linear infinite;
+}
+
+.Yellowin-win {
+  background-color: yellow;
+  box-shadow: inset -0.1em 0.3em 10px #161618bc;
+  animation: blink 1300ms linear infinite;
+}
+
+/* show which cells that are clickable */
+body[gameInProgress="true"] {
+  
+  .cell:not(.Red, .Yellow) {
+    cursor: pointer;
+  }
+  
+  /* pre-show the correct piece on hover/mouse-over*/
+  
+  &[currentPlayerColor="Red"] .cell:not(.Red, .Yellow):hover::before {
+    background-color: rgb(244, 39, 39);
+    content: '?';
+    color: red;
+    opacity: 0.7;
+    font-size: 50px;
+    
+    text-align: center;
+  }
+  
+  &[currentPlayerColor="Yellow"] .cell:not(.Red, .Yellow):hover::before {
+    background-color: rgb(248, 248, 98);
+    content: '?';
+    color: rgb(84, 84, 17);
+    opacity: 0.7;
+    
+    font-size: 50px;
+    
+    text-align: center;
+  }
+  
+}
+
+/* show the winning combo, with a blinking animation */
+
+
+
+@keyframes blink {
+  50% {
+    opacity: 0.8;
+  }
+}
+
+
+
+/* #under {
 
   margin: 0 auto;
   width: 350px;
@@ -124,7 +145,4 @@ background-color: red;
   background-color: blue;
   border-radius: 0 0 25px 25px / 0 0 35px 35px;
   box-shadow: inset 0px -5px 10px #16161854;
-}
-
-
-
+} */
