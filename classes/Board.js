@@ -1,5 +1,9 @@
 import sleep from './helpers/sleep.js';
 
+// Game sounds
+const playSound = new Audio('./sound/plasticPlop.mp3');
+const winningSound = new Audio('./sound/katching.mp3');
+
 export default class Board {
 
   constructor(app) {
@@ -87,6 +91,8 @@ export default class Board {
     this.latestMove = [row, column]
     this.matrix[row -1][column] = this.currentPlayerColor;
 
+    playSound.play(); //Plays the drop sound
+
     // Check if someone has won or if it's a draw/tie and update properties
     this.winner = this.winCheck();
     this.isADraw = this.drawCheck();
@@ -127,6 +133,7 @@ export default class Board {
             }
             if (colorsInCombo === color.repeat(4)) {
               this.winningCombo = combo; // remember the winning combo
+              winningSound.play(); //Plays the winning sound
               return color;
             }
           }

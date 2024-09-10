@@ -1,9 +1,12 @@
 .board {
+  position: relative;
   margin: 2px auto;
   margin-top: 30px;
-  width: 500px;
+  padding: 10xp;
+  width: 540px;
   height: 430px;
   background-color: blue;
+  z-index: 100;
 }
 
 @media (min-aspect-ratio: 0.8) {
@@ -22,8 +25,8 @@
   display: inline-block;
   width: 62px;
   height: 62px;
-  margin: 6px 0px -4px 5px;
-  background-color: #fff; /* Initial white background */
+  margin: 1px 5px;
+  background-color: var(--Wall-Color); /* Initial white background */
   border-radius: 50%;
   border-top: solid 2px rgb(2, 2, 79);
   filter: drop-shadow(0.5px -1px 1px rgb(255 255 255 / 0.4));
@@ -41,8 +44,8 @@
     transition: opacity 0.3s ease;
   }
   
-  /* Default white holes */
-  background-color: white; 
+  /* Default empty cells */
+  background-color: var(--Wall-Color); 
 }
 
 .cell.Red {
@@ -59,25 +62,9 @@
   border-bottom: solid 1.5px #ffffff76;
 }
 
+/* Osäker på om den här används */
 .shadow {
   box-shadow: inset 0 0 10px #f8a100;
-}
-
-.marker {
-  position: relative;
-  border-radius: 50%;
-  box-shadow: inset -0.1em 0.3em 10px #161618bc;
-  border-top: solid 2px blue;
-  border-bottom: solid 1.5px #ffffff76;
-}
-
-.shaded-marker {
-  position: absolute;
-  margin: 9px 0 0 19px;
-  text-align: center;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 40px;
-  filter: drop-shadow(0.5px 1px 1px rgb(0 0 0 / 0.3));
 }
 
 .red {
@@ -154,13 +141,21 @@ body[gameInProgress="true"] {
 
 /* show the winning combo, with a blinking animation */
 
-.cell.in-win {
-  animation: blink 2s linear infinite;
+.Redin-win {
+  background-color: red;
+    box-shadow: inset -0.1em 0.3em 10px #161618bc;
+    animation: blink 1300ms linear infinite;
+}
+
+.Yellowin-win {
+  background-color: yellow;
+    box-shadow: inset -0.1em 0.3em 10px #161618bc;
+    animation: blink 1300ms linear infinite;
 }
 
 @keyframes blink {
   50% {
-    opacity: 0.5;
+    opacity: 0.8;
   }
 }
 
