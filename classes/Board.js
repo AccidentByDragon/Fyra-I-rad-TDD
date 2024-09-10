@@ -10,7 +10,7 @@ export default class Board {
       [...new Array(7)].map(column => ' ')
     );
     // currentPlayer, whose turn is it?
-    this.currentPlayerColor = 'X';
+    this.currentPlayerColor = 'Red';
     // status of game (updated after each move)
     this.winner = false;
     this.isADraw = false;
@@ -38,7 +38,7 @@ export default class Board {
       row.map((cell, columnIndex) =>/*html*/`
         <div
           class="cell ${cell
-        + (this.latestMove[0] === rowIndex && this.latestMove[1] === columnIndex
+        + (this.latestMove[-1] === rowIndex && this.latestMove[1] === columnIndex
           ? 'latest move' : '')
         + (cell === ' ' && this.matrix[rowIndex + 1]?.[columnIndex] !== ''
             ? 'first-free' : '')
@@ -59,7 +59,7 @@ export default class Board {
     if (this.gameOver) { return false; }
 
     // Check that the color is X or O - otherwise don't make the move
-    if (color !== 'X' && color !== 'O') { return false; }
+    if (color !== 'Red' && color !== 'Yellow') { return false; }
 
     // Check that the color matches the player's turn - otherwise don't make the move
     if (color !== this.currentPlayerColor) { return false; }
@@ -84,7 +84,7 @@ export default class Board {
    }
 
     // Place the piece in the lowest available row
-    this.latestMove = [row -1, column]
+    this.latestMove = [row, column]
     this.matrix[row -1][column] = this.currentPlayerColor;
 
     // Check if someone has won or if it's a draw/tie and update properties
@@ -95,7 +95,7 @@ export default class Board {
     this.gameOver = this.winner || this.isADraw;
 // Change the current player color
     !this.gameOver
-      && (this.currentPlayerColor = this.currentPlayerColor === 'X' ? 'O' : 'X');
+      && (this.currentPlayerColor = this.currentPlayerColor === 'Red' ? 'Yellow' : 'Red');
     
     // Return true if the move could be made
     document.body.setAttribute('moveInProgress', false);
@@ -114,7 +114,7 @@ export default class Board {
   // loop through each player color, each position (row + column),
     // each winType/offsets and each offset coordinate added to the position
     // to check if someone has won :)
-    for (let color of 'XO') {
+    for (let color of ['Red', 'Yellow']) {
       // r = row, c = column
       for (let r = 0; r < m.length; r++) {
         for (let c = 0; c < m[0].length; c++) {
