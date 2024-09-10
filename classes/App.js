@@ -5,24 +5,23 @@ import sleep from './helpers/sleep.js';
 
 export default class App {
 
-  constructor(playerX, playerO, whoStarts = 'X') {
-    //this.board = this.createBoard();
+  constructor(playerRed, playerYellow, whoStarts = 'Red') {
 
     this.dialog = new Dialog();
     this.board = new Board(this);
     this.board.currentPlayerColor = whoStarts;
     this.whoStarts = whoStarts;
     this.setPlayAgainGlobals();
-    if (playerX && playerO) {
-      this.playerX = playerX;
-      this.playerO = playerO;
+    if (playerRed && playerYellow) {
+      this.playerRed = playerRed;
+      this.playerYellow = playerYellow;
       this.namesEntered = true;
     }
     else { this.askForNames(); }
     this.render();
   }
 
-  async askForNames(color = 'X') {
+  async askForNames(color = 'Red') {
     const okName = name => name.match(/[a-zåäöA-ZÅÄÖ]{2,}/);
     let playerName = '';
     while (!okName(playerName)) {
@@ -30,21 +29,18 @@ export default class App {
       await sleep(500);
     }
     this['player' + color] = new Player(playerName, color);
-    if (color === 'X') { this.askForNames('O'); return; }
+    if (color === 'Red') { this.askForNames('Yellow'); return; }
     this.namesEntered = true;
     this.render();
   }
 
   namePossesive(name) {
-    // although not necessary, it's nice with a traditional
-    // possesive form of the name when it ends with an "s":
-    // i.e. "Thomas'" rather than "Thomas's" but "Anna's" :)
     return name + (name.slice(-1).toLowerCase() !== 's' ? `'s` : `'`)
   }
 
   render() {
     let color = this.board.currentPlayerColor;
-    let player = color === 'X' ? this.playerX : this.playerO;
+    let player = color === 'Red' ? this.playerRed : this.playerYellow;
     let name = player?.name || '';
 
     document.querySelector('main').innerHTML = /*html*/`
@@ -87,18 +83,16 @@ export default class App {
   setPlayAgainGlobals() {
     // play again 
     globalThis.playAgain = async () => {
-      let playerToStart = this.whoStarts === 'X' ? this.playerO : this.playerX;
+      let playerToStart = this.whoStarts === 'Red' ? this.playerYellow : this.playerRed;
       await this.dialog.ask(
         `It's ${this.namePossesive(playerToStart.name)} turn to start!`, ['OK']);
-      new App(this.playerX, this.playerO, playerToStart.color);
+      new App(this.playerRed, this.playerYellow, playerToStart.color);
     }
     // start a-fresh with new players
     globalThis.newPlayers = () => new App();
   }
 
   renderPlayAgainButtons() {
-    // why not use the button element? 
-    // div tags are easier to style in a cross-browser-compatible way
     return /*html*/`
       <div class="button" href="#" onclick="playAgain()">Play again</div>
       <div class="button" href="#" onclick="newPlayers()">New players</div>
@@ -106,82 +100,3 @@ export default class App {
   }
 
 }
-
-  /*start() {
-    // a while-loop that let us play the game repeatedly
-    while (true) {
-      this.createPlayers();
-      this.startGameLoop();
-      this.whoHasWonOnGameOver();
-      // ask if we should play again
-      console.log('');
-      let playAgain = prompt('Vill ni spela igen? (ja/nej)? ');
-      if (playAgain !== 'ja') { break; }
-      break;
-    }
-  }
-
-  createPlayers() {
-    console.clear();
-    console.log('Fyra i rad\n');
-
-    // Create Player X
-    this.playerX = new Player(prompt('Spelare X:s namn: '), 'X');
-
-    // Loop until Player O's name is different from Player X's name
-    do {
-      this.playerO = new Player(prompt('Spelare O:s namn: '), 'O');
-      if (this.playerO.name === this.playerX.name) {
-        console.log('Vänligen välj ett annat namn för Spelare O.');
-      }
-    } while (this.playerO.name === this.playerX.name);
-  }
-
-
-  startGameLoop() {
-    // game loop - runs until the game is over
-    while (!this.board.gameOver) {
-      console.clear();
-      this.board.render();
-      let player = this.board.currentPlayerColor === 'X'
-        ? this.playerX : this.playerO;
-      let column = prompt(
-        `Ange ditt drag ${player.color} ${player.name} - skriv in column: `
-      ) - 1;
-      // convert row and columns to numbers and zero-based indexes
-      // let [row, column] = move.split(',').map(x => +x.trim() - 1);
-      // try to make the move
-      this.board.makeMove(player.color, column);
-    }
-  }
-
-  whoHasWonOnGameOver() {
-    // the game is over, tell the player who has one or if we have a draw
-    console.clear();
-    this.board.render();
-    if (this.board.winner) {
-      let winningPlayer = this.board.winner === 'X' ? this.playerX : this.playerO;
-      console.log(`Grattis ${winningPlayer.color}: ${winningPlayer.name} du vann!`);
-    }
-    else {
-      console.log('Tyvärr det blev oavgjort...');
-    }
-  }
-
-
-
-  createBoard() {
-    return new Board();
-  }
-
-  boardReset() {
-    let playAgain = prompt('Vill ni spela igen? (ja/nej)? ');
-    if (playAgain !== 'ja') {
-      return false;
-    }
-    else {
-      return true
-    }
-  }
-
-}*/
