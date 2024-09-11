@@ -17,7 +17,7 @@ export default async function registerPlayers() {
   await waitUntil(() =>
     !body.querySelector('main p').innerText.includes('Enter names'));
   // has the app registered the players
-  expect(app.playerX.name).toBe('Anna');
-  expect(app.playerO.name).toBe('Beata');
+  expect(app.playerRed.name).toBe('Anna');
+  expect(app.playerYellow.name).toBe('Beata');
   return body;
 }
