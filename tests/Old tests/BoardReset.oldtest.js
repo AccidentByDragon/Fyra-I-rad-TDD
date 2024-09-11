@@ -1,14 +1,14 @@
 import fs from 'fs';
 import { expect, test } from "vitest";
 // mocking helpers
-import getDocument from './helpers/mock-help/getDocument.js';
-import click from './helpers/mock-help/triggerOnclick.js';
+import getDocument from '../helpers/mock-help/getDocument.js';
+import click from '../helpers/mock-help/triggerOnclick.js';
 
 //automate player name input
 import registerPlayers from './helpers/commonTasks/registerPlayers.js';
 
 
-import App from "../classes/App.js";
+import App from "../../classes/App.js";
 
 
 test('The Board should ask if the player wishes to restart', () => {
