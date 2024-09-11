@@ -4,7 +4,7 @@ import { expect, test } from 'vitest';
 import getDocument from './helpers/mock-help/getDocument.js';
 import click from './helpers/mock-help/triggerOnclick.js';
 
-// other helpers for mocking not used right now
+// oanvända helpers för mockning
 // import sleep from './helpers/mock-help/getDocument.js';
 // import waitUntil from './helpers/mock-help/waitUntil.js';
 
