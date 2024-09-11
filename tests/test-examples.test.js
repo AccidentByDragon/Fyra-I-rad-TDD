@@ -1,4 +1,6 @@
 import { expect, test } from 'vitest';
+//mock audio
+globalThis.Audio = class Audio {}
 
 // some helpers for mocking
 import getDocument from './helpers/mock-help/getDocument.js';

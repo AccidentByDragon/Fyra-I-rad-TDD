@@ -1,5 +1,7 @@
 import { Window } from 'happy-dom';
 import fs from 'fs';
+//mock audio
+globalThis.Audio = class Audio { }
 
 const bodyInitialContent = fs.readFileSync('index.html', 'utf-8');
 
