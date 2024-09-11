@@ -44,7 +44,7 @@ export default class App {
     let name = player?.name || '';
 
     document.querySelector('main').innerHTML = /*html*/`
-      <h1>Fyra-I-Rad</h1>
+      <h1>Four-in-a-row</h1>
       ${!this.board.gameOver && player ?
         `<p>${color}: ${this.namePossesive(name)} turn...</p>`
         : (this.namesEntered ? '' : '<p>Enter names</p>')}
@@ -67,10 +67,10 @@ export default class App {
     globalThis.quitGame = async () => {
       let answer = await this.dialog.ask(
         'What do you want to do?',
-        ['Continue the game', 'Play again', 'Enter new players']
+        ['Continue the game', 'Play again', 'Reset the game']
       );
       answer === 'Play again' && globalThis.playAgain();
-      answer === 'Enter new players' && globalThis.newPlayers();
+      answer === 'Reset the game' && globalThis.newPlayers();
     };
 
     return /*html*/`
