@@ -8,8 +8,8 @@ import click from './helpers/mock-help/triggerOnclick.js';
 // import sleep from './helpers/mock-help/getDocument.js';
 // import waitUntil from './helpers/mock-help/waitUntil.js';
 
-// helper för sippa skapa spelare vid varje test med dem
-import registerPlayers from './helpers/common tasks/registerPlayers.js';
+// helper för slippa skapa spelare vid varje test med dem
+//import registerPlayers from './helpers/common tasks/registerPlayers.js';
 
 // mock audio
 globalThis.Audio = class Audio { }
@@ -22,11 +22,11 @@ import App from '../classes/App.js';
 2. Göra Drag som spelare Gul
 */
 test('Make the first two moves and check they are appear on the board', async () => {
-  let body = await registerPlayers();
+  let { body } = getDocument();
   click(body.querySelector('.cell:nth-child(5)'));
   expect(body.querySelector('.cell:nth-child(5)').classList.contains('Red')).toBeTruthy();
 
 
   /*click(body.querySelector('.cell:nth-child(4)'));
-  expect(body.querySelector('.cell:nth-child(4)').classList.contains('O')).toBeTruthy();*/
+  expect(body.querySelector('.cell:nth-child(4)').classList.contains('Yellow')).toBeTruthy();*/
 });
