@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import Board from '../classes/Board.js';
+import Board from '../../classes/Board.js';
 
 // Helper function to set up the board
 function setBoardState(board, positions) {

@@ -6,7 +6,7 @@ import {
   setMockAnswers,
   log
 } from './helpers/mockPromptAndConsoleLog.js';
-import App from "../classes/App.js";
+import App from "../../classes/App.js";
 
 
 test('The Board should ask if the player wishes to restart', () => {

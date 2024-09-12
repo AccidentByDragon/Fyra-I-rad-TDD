@@ -3,6 +3,11 @@ export default class Dialog {
   // call with await!
   ask(question, limitedAnswers) {
 
+    let mockAnswers = globalThis.mockAnswers;
+    if (mockAnswers instanceof Array && mockAnswers.length > 0) {
+      return mockAnswers.shift();
+    }
+
     // render html for the dialog
     let dialogElement = document.querySelector('dialog');
     dialogElement.innerHTML = /*html*/`
