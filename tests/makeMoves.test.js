@@ -21,7 +21,7 @@ import App from '../classes/App.js';
 1. Make a move as player Red
 2. Make a move as player Yellow
 */
-test('Make the first two moves and check they are appear on the board', async () => {
+test('Make the first two moves and check they appear on the board', async () => {
   let body = await registerPlayers();
   click(body.querySelector('.cell:nth-child(5)'));
   expect(body.querySelector('.cell:nth-child(5)').classList.contains('Red')).toBeTruthy();

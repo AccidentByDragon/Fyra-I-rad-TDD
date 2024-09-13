@@ -44,7 +44,7 @@ export default class App {
     let name = player?.name || '';
 
     document.querySelector('main').innerHTML = /*html*/`
-      <h1>Fyra-I-Rad</h1>
+      <h1>Four in a Row</h1>
       ${!this.board.gameOver && player ?
         `<p>${color}: ${this.namePossesive(name)} turn...</p>`
         : (this.namesEntered ? '' : '<p>Enter names</p>')}
