@@ -23,7 +23,7 @@ test('3: Does the input of mocked names pass throu the starting sequens?', async
  await registerPlayers();
 })
 
-test('4.5: Make the first move', async () => {
+test('3.5: Try to make the first move', async () => {
   let { body } = await registerPlayers();
 
   click(body.querySelector('.cell:nth-child(39)'));
@@ -32,30 +32,30 @@ test('4.5: Make the first move', async () => {
 })
 
 test('4: Does the game app return the correct winner name and color when it plays a winning game', async () => {
-  let { body } = getDocument();
 
+  let { body } = await registerPlayers();
+  /*let { body } = getDocument();
   globalThis.mockAnswers = ['Anna', 'Beata'];
-  
   new App()
-
   await waitUntil(() => !body.querySelector('main p').innerText.includes('Enter'))
-  // expect(body.querySelector('main p').innerText).toBe('Red: Anna\'s turn...');
+  expect(body.querySelector('main p').innerText).toBe('Red: Anna\'s turn...'); */
 
   // Playing a winning game
   click(body.querySelector('.cell:nth-child(39)'));
   expect(body.querySelector('.cell:nth-child(39)').classList.contains('Red')).toBe(true);
-  click(body.querySelector('.cell:nth-child(4)'));
-  expect(body.querySelector('.cell:nth-child(4)').classList.contains('Yellow')).toBe(true);
-  click(body.querySelector('.cell:nth-child(3)'));
-  expect(body.querySelector('.cell:nth-child(3)').classList.contains('Red')).toBe(true);
-  click(body.querySelector('.cell:nth-child(4)'));
-  expect(body.querySelector('.cell:nth-child(4)').classList.contains('Yellow')).toBe(true);
-  click(body.querySelector('.cell:nth-child(5)'));
-  expect(body.querySelector('.cell:nth-child(5)').classList.contains('Red')).toBe(true);
-  click(body.querySelector('.cell:nth-child(2)'));
-  expect(body.querySelector('.cell:nth-child(2)').classList.contains('Yellow')).toBe(true);
-  click(body.querySelector('.cell:nth-child(6)'));
-  expect(body.querySelector('.cell:nth-child(6)').classList.contains('Red')).toBe(true);
+  click(body.querySelector('.cell:nth-child(32)'));
+  expect(body.querySelector('.cell:nth-child(32)').classList.contains('Yellow')).toBe(true);
+  click(body.querySelector('.cell:nth-child(38)'));
+  expect(body.querySelector('.cell:nth-child(38)').classList.contains('Red')).toBe(true);
+  click(body.querySelector('.cell:nth-child(25)'));
+  expect(body.querySelector('.cell:nth-child(25)').classList.contains('Yellow')).toBe(true);
+  click(body.querySelector('.cell:nth-child(40)'));
+  expect(body.querySelector('.cell:nth-child(40)').classList.contains('Red')).toBe(true);
+  click(body.querySelector('.cell:nth-child(37)'));
+  expect(body.querySelector('.cell:nth-child(37)').classList.contains('Yellow')).toBe(true);
+  click(body.querySelector('.cell:nth-child(41)'));
+  expect(body.querySelector('.cell:nth-child(41)').classList.contains('Red')).toBe(true);
+  expect(body.querySelector('.cell:nth-child(41)').classList.contains('Redin-win')).toBe(true);
   
   // await waitUntil(() => body.querySelector('.board').classList.contains('.Redin-win'))
   // // await waitUntil(() => body.querySelector('main p').innerText.includes('won!'))

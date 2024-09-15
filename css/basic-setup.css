@@ -30,12 +30,3 @@ main {
   height: 24vh;
   background-color: var(--Floor-Color);
 }
-
-/* .shadeing {
-  margin: 0 auto;
-  position: relative;
-  width: 540px;
-  height: 13px;
-  background-color: rgba(0, 0, 0, 0.595);
-  box-shadow: 0 0 10px black;
-} */
