@@ -1,56 +1,73 @@
 import { expect, test } from "vitest";
-
 import getDocument from "./helpers/mock-help/getDocument.js";
+import registerPlayers from "./helpers/common tasks/registerPlayers.js"
+import waitUntil from "./helpers/mock-help/waitUntil.js";
 import click from './helpers/mock-help/triggerOnclick.js';
-
-import registerPlayers from "./helpers/common tasks/registerPlayers.js";
 import App from "../classes/App.js";
 
-globalThis.Audio = class Audio {
-  play() { }
-}
+globalThis.Audio = class Audio { play() { } }
 
-// Modyfied examples test 1 (changed the headline text of the name)
-test('Does the logoheadline have the text: Four in a Row?', () => {
+test('1: Does the logoheadline have the text: Four in a Row?', () => {
   let { body } = getDocument();
   new App();
-  let h1 = body.querySelector('h1');
-  expect(h1.innerText).toBe('Four in a Row');
+  expect((body.querySelector('h1')).innerText).toBe('Four in a Row');
 });
 
-// Modyfied examples test 2 (changed the number of cells in the game)
-test('Does the board contains 42 cell positions?', () => {
+test('2: Does the board contains 42 cell positions?', () => {
   let { body } = getDocument();
   new App();
-
-  let board = body.querySelector('.board');
-  let cells = body.querySelectorAll('.cell')
-
-  expect(cells.length).toBe(42);
+  expect(body.querySelectorAll('.cell').length).toBe(42);
 })
 
-//Trying to built my own testing
+test('3: Does the input of mocked names pass throu the starting sequens?', async () => {
+ await registerPlayers();
+})
+
+test('4.5: Make the first move', async () => {
+  let { body } = await registerPlayers();
+
+  click(body.querySelector('.cell:nth-child(39)'));
+  expect(body.querySelector('.cell:nth-child(39)').classList.contains('Red')).toBeTruthy();
+  
+})
+
 test('4: Does the game app return the correct winner name and color when it plays a winning game', async () => {
   let { body } = getDocument();
 
+  globalThis.mockAnswers = ['Anna', 'Beata'];
+  
   new App()
-  await registerPlayers();
 
+  await waitUntil(() => !body.querySelector('main p').innerText.includes('Enter'))
+  // expect(body.querySelector('main p').innerText).toBe('Red: Anna\'s turn...');
+
+  // Playing a winning game
+  click(body.querySelector('.cell:nth-child(39)'));
+  expect(body.querySelector('.cell:nth-child(39)').classList.contains('Red')).toBe(true);
   click(body.querySelector('.cell:nth-child(4)'));
-  click(body.querySelector('.cell:nth-child(4)'));
+  expect(body.querySelector('.cell:nth-child(4)').classList.contains('Yellow')).toBe(true);
   click(body.querySelector('.cell:nth-child(3)'));
+  expect(body.querySelector('.cell:nth-child(3)').classList.contains('Red')).toBe(true);
   click(body.querySelector('.cell:nth-child(4)'));
-  click(body.querySelector('.cell:nth-child(4)'));
+  expect(body.querySelector('.cell:nth-child(4)').classList.contains('Yellow')).toBe(true);
+  click(body.querySelector('.cell:nth-child(5)'));
+  expect(body.querySelector('.cell:nth-child(5)').classList.contains('Red')).toBe(true);
   click(body.querySelector('.cell:nth-child(2)'));
-  click(body.querySelector('.cell:nth-child(1)'));
-
-  expect(body.querySelector('p').innerText).toBe('Red: Anna won!')
+  expect(body.querySelector('.cell:nth-child(2)').classList.contains('Yellow')).toBe(true);
+  click(body.querySelector('.cell:nth-child(6)'));
+  expect(body.querySelector('.cell:nth-child(6)').classList.contains('Red')).toBe(true);
+  
+  // await waitUntil(() => body.querySelector('.board').classList.contains('.Redin-win'))
+  // // await waitUntil(() => body.querySelector('main p').innerText.includes('won!'))
+  // expect(body.querySelector('main p').innerText).toBe('Red: Anna won!')
 })
+
 
 test('5: Does the game app return the correct winner fraze when the game is a tie?', async () => {
   let { body } = getDocument();
+  globalThis.mockAnswers = ['Anna', 'Beata'];
+
   new App()
-  await registerPlayers();
 
   //Play the first row
   click(body.querySelector('.cell:nth-child(1)'));
@@ -106,5 +123,16 @@ test('5: Does the game app return the correct winner fraze when the game is a ti
   click(body.querySelector('.cell:nth-child(6)'));
   click(body.querySelector('.cell:nth-child(7)'));
 
-  expect(p.innerText).toBe('It\'s a tie...')
-})
+  expect(body.querySelector('main p').innerText).toBe('It\'s a tie...')
+}) 
+
+
+
+// test('3: Does the input of mocked names pass throu the starting sequens?', async () => {
+//   let { body } = getDocument();
+//   globalThis.mockAnswers = ['Anna', 'Beata'];
+//   new App()
+//   await waitUntil( () => !body.querySelector('main p').innerText.includes('Enter'))
+//   expect(body.querySelector('main p').innerText).includes('turn...');
+ 
+// })

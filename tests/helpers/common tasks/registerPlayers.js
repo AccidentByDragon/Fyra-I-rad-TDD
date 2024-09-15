@@ -15,7 +15,7 @@ export default async function registerPlayers() {
   let app = new App();
   // wait until the dom does not have p tag in the main tag with 'Enter names'
   await waitUntil(() =>
-    !body.querySelector('main p').innerText.includes('Enter names'));
+    !body.querySelector('main p').innerText.includes('Enter'));
   // has the app registered the players  
   expect(app.playerRed.name).toBe('Anna');
   expect(app.playerYellow.name).toBe('Beata');
