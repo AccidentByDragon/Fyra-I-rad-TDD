@@ -12,7 +12,7 @@ import click from './helpers/mock-help/triggerOnclick.js';
 import registerPlayers from './helpers/common tasks/registerPlayers.js';
 
 // mock audio
-globalThis.Audio = class Audio { }
+globalThis.Audio = class Audio { play() { } }
 
 // The App class from the program
 import App from '../classes/App.js';

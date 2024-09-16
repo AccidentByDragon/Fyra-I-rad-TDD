@@ -58,7 +58,7 @@ export default class Board {
   }
 
   async makeMove(color, column) {
-
+    
     if (document.body.getAttribute('moveInProgress') === 'true') {return;}
     // Don't make any move if the game is over
     if (this.gameOver) { return false; }
@@ -92,7 +92,9 @@ export default class Board {
     this.latestMove = [row, column]
     this.matrix[row -1][column] = this.currentPlayerColor;
 
+
     playSound.play(); //Plays the drop sound
+    
 
     // Check if someone has won or if it's a draw/tie and update properties
     this.winner = this.winCheck();
