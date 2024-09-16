@@ -1,5 +1,6 @@
 import { Window } from 'happy-dom';
 import fs from 'fs';
+import { log } from 'console';
 
 const bodyInitialContent = fs.readFileSync('index.html', 'utf-8');
 

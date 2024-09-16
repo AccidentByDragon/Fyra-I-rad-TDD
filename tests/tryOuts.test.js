@@ -1,6 +1,7 @@
 import { expect, test } from "vitest";
 import getDocument from "./helpers/mock-help/getDocument.js";
 import registerPlayers from "./helpers/common tasks/registerPlayers.js"
+import sleep from "./helpers/mock-help/sleep.js"
 import waitUntil from "./helpers/mock-help/waitUntil.js";
 import click from './helpers/mock-help/triggerOnclick.js';
 import App from "../classes/App.js";
@@ -24,16 +25,18 @@ test('3: Does the input of mocked names pass throu the starting sequens?', async
 })
 
 test('3.5: Try to make the first move', async () => {
-  let { body } = await registerPlayers();
-
+  let body = await registerPlayers();
+  
   click(body.querySelector('.cell:nth-child(39)'));
+  await sleep(1000)
+  // console.log(body.querySelector('.cell:nth-child(39)').classList);
   expect(body.querySelector('.cell:nth-child(39)').classList.contains('Red')).toBeTruthy();
   
 })
 
 test('4: Does the game app return the correct winner name and color when it plays a winning game', async () => {
 
-  let { body } = await registerPlayers();
+  let body = await registerPlayers();
   /*let { body } = getDocument();
   globalThis.mockAnswers = ['Anna', 'Beata'];
   new App()
