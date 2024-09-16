@@ -1,5 +1,10 @@
 dialog {
   border-radius: 10px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
+  border: solid 1px #dde;
+  border-top: white 1px solid;
+  border-bottom: rgb(144, 144, 168) 1px solid;
+  background-color: #dde;
 
   &:backdrop {
     background-color: rgb(0, 0, 0);

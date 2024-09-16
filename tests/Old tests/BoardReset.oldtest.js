@@ -1,13 +1,11 @@
 import fs from 'fs';
 import { expect, test } from "vitest";
-// mocking helpers
-import getDocument from '../helpers/mock-help/getDocument.js';
-import click from '../helpers/mock-help/triggerOnclick.js';
-
-//automate player name input
-import registerPlayers from './helpers/commonTasks/registerPlayers.js';
-
-
+import {
+  promptQuestions,
+  consoleOutput,
+  setMockAnswers,
+  log
+} from './helpers/mockPromptAndConsoleLog.js';
 import App from "../../classes/App.js";
 
 
