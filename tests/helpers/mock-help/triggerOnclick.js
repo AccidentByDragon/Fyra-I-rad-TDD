@@ -1,7 +1,6 @@
 
 export default function triggerOnclick(element) {
   // get the content inside 'onclick' - a call to a global function
-  console.log(document.body.innerHTML);
   
   let onClick = element.getAttribute('onclick');
   // create a wrapper function that calls the global function
