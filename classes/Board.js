@@ -92,7 +92,7 @@ export default class Board {
     this.latestMove = [row, column]
     this.matrix[row -1][column] = this.currentPlayerColor;
 
-    /*playSound.play(); Plays the drop sound, we have to disable this for testing*/
+    playSound.play(); //Plays the drop sound
 
     // Check if someone has won or if it's a draw/tie and update properties
     this.winner = this.winCheck();

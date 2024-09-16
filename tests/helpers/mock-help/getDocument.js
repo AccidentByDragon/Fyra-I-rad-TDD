@@ -2,13 +2,10 @@ import { Window } from 'happy-dom';
 import fs from 'fs';
 import { log } from 'console';
 
-// mock audio
-globalThis.Audio = class Audio { }
 
 const bodyInitialContent = fs.readFileSync('index.html', 'utf-8');
-
 // mock audio
-globalThis.Audio = class Audio { }
+globalThis.Audio = class Audio { play() { } }
 
 export default function getDocument() {
   // create a mocked browser window and get its document
