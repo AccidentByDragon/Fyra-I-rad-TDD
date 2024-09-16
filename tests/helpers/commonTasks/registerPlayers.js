@@ -12,7 +12,12 @@ globalThis.mockMinimalSleep = true;
 export default async function registerPlayers() {
   let { body } = getDocument();
   globalThis.mockAnswers = ['Anna', 'Beata'];
+
+
   let app = new App();
+
+  //app.playerRed = { name: 'Anna' }; 
+  //app.playerYellow = { name: 'Beata' };
   // wait until the dom does not have p tag in the main tag with 'Enter names'
   await waitUntil(() =>
     !body.querySelector('main p').innerText.includes('Enter names'));

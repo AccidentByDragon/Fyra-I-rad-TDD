@@ -1,6 +1,8 @@
 import { Window } from 'happy-dom';
 import fs from 'fs';
 
+globalThis.Audio = class Audio { }
+
 const bodyInitialContent = fs.readFileSync('index.html', 'utf-8');
 
 export default function getDocument() {

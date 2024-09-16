@@ -1,8 +1,8 @@
 import sleep from './helpers/sleep.js';
 
 // Game sounds
-//const playSound = new Audio('../public/sounds/plasticPlop.mp3');
-//const winningSound = new Audio('../public/sounds/katching.mp3');
+const playSound = new Audio('../public/sounds/plasticPlop.mp3');
+const winningSound = new Audio('../public/sounds/katching.mp3');
 
 export default class Board {
 
@@ -133,7 +133,7 @@ export default class Board {
             }
             if (colorsInCombo === color.repeat(4)) {
               this.winningCombo = combo; // remember the winning combo
-              //winningSound.play(); //Plays the winning sound
+              winningSound.play(); //Plays the winning sound
               return color;
             }
           }
