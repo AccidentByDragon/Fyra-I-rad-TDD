@@ -21,56 +21,56 @@ test('2: Does the board contains 42 cell positions?', () => {
 })
 
 test('3: Does the input of mocked names pass throu the starting sequens?', async () => {
- await registerPlayers();
+  await registerPlayers();
 })
 
 test('4: Try to make the first move', async () => {
   let body = await registerPlayers();
-  
+
   click(body.querySelector('.cell:nth-child(39)'));
   // await waitUntil()
   await sleep(800)
   // console.log(body.querySelector('.cell:nth-child(39)').classList);
   expect(body.querySelector('.cell:nth-child(39)').classList.contains('Red')).toBeTruthy();
-  
+
 })
 
 test('5: Does the game app return the correct winner name and color when it plays a winning game', async () => {
-  
+
   let body = await registerPlayers();
   let as = async () => await sleep(400);
 
   // Playing a winning game
   click(body.querySelector('.cell:nth-child(39)')); await as();
   expect(body.querySelector('.cell:nth-child(39)').classList.contains('Red')).toBeTruthy();
-  
+
   click(body.querySelector('.cell:nth-child(32)')); await as();
   expect(body.querySelector('.cell:nth-child(32)').classList.contains('Yellow')).toBeTruthy();
-  
+
   click(body.querySelector('.cell:nth-child(38)')); await as();
   expect(body.querySelector('.cell:nth-child(38)').classList.contains('Red')).toBeTruthy();
-  
+
   click(body.querySelector('.cell:nth-child(25)')); await as();
   expect(body.querySelector('.cell:nth-child(25)').classList.contains('Yellow')).toBeTruthy();
-  
+
   click(body.querySelector('.cell:nth-child(40)')); await as();
-  
+
   expect(body.querySelector('.cell:nth-child(40)').classList.contains('Red')).toBeTruthy();
-  
+
   click(body.querySelector('.cell:nth-child(37)')); await as();
   expect(body.querySelector('.cell:nth-child(37)').classList.contains('Yellow')).toBeTruthy();
-  
+
   click(body.querySelector('.cell:nth-child(41)')); await as();
   // expect(body.querySelector('.cell:nth-child(41)').classList.contains('Red')).toBeTruthy(); await as();
   expect(body.querySelector('.cell:nth-child(41)').classList.contains('Redin-win')).toBeTruthy();
-  
+
   await waitUntil(() => body.querySelector('main p').innerText.includes('won!'))
   expect(body.querySelector('main p').innerText).toBe('Red: Anna won!')
 }, 10000);
 
 
 test('6: Does the game app return the correct winner fraze when the play round is a tie?', async () => {
-  
+
   // let { body } = getDocument();
   // globalThis.mockAnswers = ['Anna', 'Beata'];
 
@@ -78,7 +78,7 @@ test('6: Does the game app return the correct winner fraze when the play round i
 
   let body = await registerPlayers();
   let as = async () => await sleep(400);
-  
+
   //Play the first row
   click(body.querySelector('.cell:nth-child(1)')); await as();
   expect(body.querySelector('.cell:nth-child(36)').classList.contains('Red')).toBeTruthy();
@@ -94,7 +94,7 @@ test('6: Does the game app return the correct winner fraze when the play round i
   expect(body.querySelector('.cell:nth-child(41)').classList.contains('Yellow')).toBeTruthy();
   click(body.querySelector('.cell:nth-child(7)')); await as();
   expect(body.querySelector('.cell:nth-child(42)').classList.contains('Red')).toBeTruthy();
-  
+
   //Play the second row
   click(body.querySelector('.cell:nth-child(1)')); await as();
   expect(body.querySelector('.cell:nth-child(29)').classList.contains('Yellow')).toBeTruthy();
@@ -110,7 +110,7 @@ test('6: Does the game app return the correct winner fraze when the play round i
   expect(body.querySelector('.cell:nth-child(34)').classList.contains('Red')).toBeTruthy();
   click(body.querySelector('.cell:nth-child(7)')); await as();
   expect(body.querySelector('.cell:nth-child(35)').classList.contains('Yellow')).toBeTruthy();
-  
+
   //Play the third row
   click(body.querySelector('.cell:nth-child(2)')); await as();
   expect(body.querySelector('.cell:nth-child(23)').classList.contains('Red')).toBeTruthy();
@@ -142,7 +142,7 @@ test('6: Does the game app return the correct winner fraze when the play round i
   expect(body.querySelector('.cell:nth-child(19)').classList.contains('Red')).toBeTruthy();
   click(body.querySelector('.cell:nth-child(7)')); await as();
   expect(body.querySelector('.cell:nth-child(21)').classList.contains('Yellow')).toBeTruthy();
-  
+
   //Play the fifth row
   click(body.querySelector('.cell:nth-child(1)')); await as();
   expect(body.querySelector('.cell:nth-child(8)').classList.contains('Red')).toBeTruthy();
