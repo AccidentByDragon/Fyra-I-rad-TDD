@@ -33,11 +33,9 @@ test(' make a move as as red and then as yellow and check they are registered', 
   let body = await registerPlayers();
   click(body.querySelector('.cell:nth-child(5)'));
   await sleep(1000);
-  console.log(body.querySelector('.cell:nth-child(40)').getAttribute('class'));
   expect(body.querySelector('.cell:nth-child(40)').classList.contains('Red')).toBeTruthy();
 
   click(body.querySelector('.cell:nth-child(4)'));
   await sleep(1000);
-  console.log(body.querySelector('.cell:nth-child(39)').getAttribute('class'));
   expect(body.querySelector('.cell:nth-child(39)').classList.contains('Yellow')).toBeTruthy();
 })

@@ -48,12 +48,12 @@ test('Does dialog box for entering names appear', () => {
 
 
 
-test('Does the logo/headline have the text "Fyra-I-Rad" ?', () => {
+test('Does the logo/headline have the text "Four in a Row" ?', () => {
   let { body } = getDocument();
   new App();
   // check that the h1 contains the text 'Tic-Tac-Toe';
   let h1 = body.querySelector('h1');
-  expect(h1.innerText).toBe('Fyra-I-Rad');
+  expect(h1.innerText).toBe('Four in a Row');
 });
 
 test('Does the board contain 42 cells?', () => {
@@ -68,25 +68,6 @@ test('Check that player names are registrered correctly', async () => {
   
   new App()
   await registerPlayers();
-});
-
-test('Make the first two moves and check they are appear on the board', async () => {
-  let body = await registerPlayers();
-  await sleep(1000)
-  // click the position/cell in the middle of the board (cell 5);
-  click(body.querySelector('.cell:nth-child(5)'));
-  // check that X is added to the cell we just clicked
-  await sleep(1000)
-
-  expect(body.querySelector('.cell:nth-child(5)').classList.contains('Red')).toBeTruthy();
-  // click the cell to the left of the middle cell (cell 4)
-  await sleep(1000)
-  click(body.querySelector('.cell:nth-child(4)'));
-  // check that O is added to the cell we just clicked
-  await sleep(1000)
-  
-
-  expect(body.querySelector('.cell:nth-child(4)').classList.contains('Yellow')).toBeTruthy();
 });
 
 
