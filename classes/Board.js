@@ -43,16 +43,12 @@ export default class Board {
     // render the board as html
     return /*html*/`<div class="board">
       ${this.matrix.map((row, rowIndex) =>
-      row.map((cell, columnIndex) =>/*html*/`
+        row.map((cell, columnIndex) =>/*html*/`
         <div
-          class="cell ${cell
-        + (this.latestMove[-1] === rowIndex && this.latestMove[1] === columnIndex
-          ? 'latest move' : '')
-        + (cell === ' ' && this.matrix[rowIndex + 1]?.[columnIndex] !== ''
-          ? 'first-free' : '')
-        + (this.winningCombo.includes('row' + rowIndex + 'column' + columnIndex)
-          ? 'in-win' : '')
-        }"
+          class="cell ${cell} 
+          ${this.winningCombo && this.winningCombo.cells.find(
+          cell => cell.row === rowIndex && cell.column === columnIndex
+        ) ? 'in-win' : ''}"
           
           onclick="makeMoveOnClick(${columnIndex})">
         </div>
@@ -116,37 +112,7 @@ export default class Board {
 
 
   winCheck() {
-    let m = this.matrix;
-    let offsets = [
-      [[0, 0], [0, 1], [0, 2], [0, 3]],  // horizontal win
-      [[0, 0], [1, 0], [2, 0], [3, 0]],  // vertical win
-      [[0, 0], [1, 1], [2, 2], [3, 3]],  // diagonal 1 win
-      [[0, 0], [1, -1], [2, -2], [3, -3]] // diagonal 2 win
-    ];
-    // loop through each player color, each position (row + column),
-    // each winType/offsets and each offset coordinate added to the position
-    // to check if someone has won :)
-    for (let color of ['Red', 'Yellow']) {
-      // r = row, c = column
-      for (let r = 0; r < m.length; r++) {
-        for (let c = 0; c < m[0].length; c++) {
-          // ro = row offset, co = column offset
-          for (let winType of offsets) {
-            let colorsInCombo = '', combo = [];
-            for (let [ro, co] of winType) {
-              colorsInCombo += (m[r + ro] || [])[c + co];
-              combo.push('row' + (r + ro) + 'column' + (c + co));
-            }
-            if (colorsInCombo === color.repeat(4)) {
-              this.winningCombo = combo; // remember the winning combo
-              winningSound.play(); //Plays the winning sound
-              return color;
-            }
-          }
-        }
-      }
-    }
-    return false;
+    return this.winChecker.winCheck();
   }
 
   // check for a draw/tie
