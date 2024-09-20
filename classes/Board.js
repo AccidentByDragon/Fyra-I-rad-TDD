@@ -112,6 +112,7 @@ export default class Board {
 
   winCheck() {
     console.log("running wincheck");    
+    console.log(winningCombo); // winningCOmbo blir undefined av någon anledning
     return this.winChecker.winCheck();
   }
 
