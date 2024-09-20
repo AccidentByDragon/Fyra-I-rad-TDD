@@ -23,7 +23,7 @@ export default class Board {
     this.winner = false;
     this.isADraw = false;
     this.gameOver = false;
-    this.winningCombo = null; //byt till [] senare
+    this.winningCombo = null; //byt till [] senare?
     this.latestMove = [];
   }
 
@@ -106,12 +106,14 @@ export default class Board {
 
     // Return true if the move could be made
     document.body.setAttribute('moveInProgress', false);
+    this.initiateBotMove();
     return true;
   }
 
 
   winCheck() {
     console.log("running wincheck");    
+    //console.log(winningCombo); // winningCOmbo blir undefined av någon anledning
     return this.winChecker.winCheck();
   }
 
@@ -119,6 +121,18 @@ export default class Board {
   drawCheck() {
     // if no one has won and no empty positions then it's a draw
     return !this.winCheck() && !this.matrix.flat().map(cell => cell.color).includes(' ');
+  }
+
+  async initiateBotMove() {
+    // get the current player
+    let player = this.currentPlayerColor === 'Red' ? this.app.playerRed : this.app.playerYellow;
+    // if the game isn't over and the player exists and the player is non-human / a bot
+    if (!this.gameOver && player && player.type !== 'Human') {
+      document.body.classList.add('botPlaying');
+      await player.makeBotMove();
+      this.app.render();
+      document.body.classList.remove('botPlaying');
+    }
   }
 
 }
