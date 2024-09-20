@@ -1,4 +1,4 @@
-import WinCombo from "./winCombo.js";
+import WinCombo from "./WinCombo.js";
 
 export default class WinChecker {
 

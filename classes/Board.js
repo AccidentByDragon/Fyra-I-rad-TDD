@@ -23,7 +23,7 @@ export default class Board {
     this.winner = false;
     this.isADraw = false;
     this.gameOver = false;
-    this.winningCombo = [];
+    this.winningCombo = null;
     this.latestMove = [];
   }
 

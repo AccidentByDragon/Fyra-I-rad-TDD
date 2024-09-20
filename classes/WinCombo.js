@@ -7,17 +7,17 @@ export default class WinCombo {
 
     cells = cells.filter(x => x instanceof Cell);
 
-    if (cells.lenght !== 4) {
+    if (cells.length !== 4) {
       throw new Error('Each winning combination must contain four cells in a row.')
     }
     this.cells = cells;
   }
 
   numberOfCells(color) {
-    return this.cells.filter(cell => cell.color === color).lenght;
+    return this.cells.filter(cell => cell.color === color).length;
   }
 
-  inWin(color) {
+  isWin(color) {
     return this.numberOfCells(color) === 4;
   }
 
