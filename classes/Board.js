@@ -23,7 +23,7 @@ export default class Board {
     this.winner = false;
     this.isADraw = false;
     this.gameOver = false;
-    this.winningCombo = null;
+    this.winningCombo = null; //byt till [] senare
     this.latestMove = [];
   }
 
@@ -48,8 +48,7 @@ export default class Board {
           class="cell ${cell} 
           ${this.winningCombo && this.winningCombo.cells.find(
           cell => cell.row === rowIndex && cell.column === columnIndex
-        ) ? 'in-win' : ''}"
-          
+        ) ? 'in-win' : ''}"          
           onclick="makeMoveOnClick(${columnIndex})">
         </div>
       `).join('')).join('')}
@@ -112,6 +111,7 @@ export default class Board {
 
 
   winCheck() {
+    console.log("running wincheck");    
     return this.winChecker.winCheck();
   }
 
