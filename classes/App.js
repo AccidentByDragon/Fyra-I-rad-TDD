@@ -35,7 +35,8 @@ export default class App {
       await sleep(500);
       playerType = await this.dialog.ask(
         `Which type of player is ${playerName}?`,
-        ['Human', 'A dumb bot' /*'A smart bot'*/]
+        ['Human', 'A dumb bot' /*'A smart bot'*/] 
+        //vi kan lägga till en smart bot senare när vi fått en DUmb bot fungerande och löst Win check problemet då Smartbot fungerar inte utan wincheck och wincombo
       )
     }
     this['player' + color] = new Player(playerName, playerType, color, this.board);
