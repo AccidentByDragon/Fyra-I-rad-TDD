@@ -89,7 +89,7 @@ export default class Board {
 
     // Place the piece in the lowest available row
     this.latestMove = [row, column]
-    this.matrix[row - 1][column] = this.currentPlayerColor;
+    this.matrix[row - 1][column].color = this.currentPlayerColor;
 
     //Plays the drop sound
     playSound.play();
