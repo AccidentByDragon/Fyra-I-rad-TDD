@@ -40,7 +40,7 @@ export default class App {
       )
     }
     this['player' + color] = new Player(playerName, playerType, color, this.board);
-    if (color === 'Red') { this.askForNames('Yellow'); return; }
+    if (color === 'Red') { this.askForNamesAndTypes('Yellow'); return; }
     this.namesEntered = true;
     this.render();
   }
