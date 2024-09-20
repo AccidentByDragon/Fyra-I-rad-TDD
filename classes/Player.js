@@ -22,7 +22,7 @@ export default class Player {
     // if (this.type === 'A smart bot') {
     //   [row, column] = this.makeSmartBotMove();
     // }
-    await this.board.makeMove(this.color, row, column);
+    await this.board.makeMove(this.color, column);
   }
 
   makeDumbBotMove() {
@@ -31,7 +31,7 @@ export default class Player {
 
   get legalMoves() {
     // which cells are free to choose?
-    // anvädner Thomas kod då vi får fel annars, Dumma boten pajar efter ett tag den vill forsätta göra drag i columner som är fulla
+    // anvädner Thomas kod då vi får fel annars, Dumma boten pajar efter ett tag, den vill forsätta göra drag i columner som är fulla
     let moves = [];
     for (let row = 0; row < this.board.matrix.length; row++) {
       for (let column = 0; column < this.board.matrix[0].length; column++) {
