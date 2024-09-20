@@ -22,7 +22,7 @@ export default class Player {
     // if (this.type === 'A smart bot') {
     //   [row, column] = this.makeSmartBotMove();
     // }
-    await this.board.makeMove(this.color, row, column);
+    await this.board.makeMove(this.color, column);
   }
 
   makeDumbBotMove() {
