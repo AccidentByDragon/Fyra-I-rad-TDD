@@ -14,10 +14,12 @@ export default class WinCombo {
   }
 
   numberOfCells(color) {
+    // return how many cells in this WinCombo that has a certain color
     return this.cells.filter(cell => cell.color === color).length;
   }
 
   isWin(color) {
+    // if all three cells are the same color we have a win
     return this.numberOfCells(color) === 4;
   }
 

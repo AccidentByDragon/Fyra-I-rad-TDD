@@ -76,7 +76,7 @@ export default class Board {
     if (this.matrix[0][column].color !== ' ') { return false; }
 
     // Find the lowest available row in the chosen column
-    document.body.setAttribute('moveinProgress', true);
+    document.body.setAttribute('moveInProgress', true);
     this.latestMove = [];
     let row = 0;
     while (row < 6 && this.matrix[row][column].color === ' ') {
@@ -89,7 +89,7 @@ export default class Board {
 
     // Place the piece in the lowest available row
     this.latestMove = [row, column]
-    this.matrix[row - 1][column] = this.currentPlayerColor;
+    this.matrix[row - 1][column].color = this.currentPlayerColor;
 
     //Plays the drop sound
     playSound.play();
@@ -136,4 +136,3 @@ export default class Board {
   }
 
 }
-
