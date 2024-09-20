@@ -22,11 +22,11 @@ export default class App {
       this.namesEntered = true;
       this.board.initiateBotMove();
     }
-    else { this.askForNames(); }
+    else { this.askForNamesAndTypes(); }
     this.render();
   }
 
-  async askForNames(color = 'Red') {
+  async askForNamesAndTypes(color = 'Red') {
     const okName = name => name.match(/[a-zåäöA-ZÅÄÖ]{2,}/);
     let playerName = '';
     let playerType = '';
