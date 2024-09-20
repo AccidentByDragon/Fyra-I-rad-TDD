@@ -31,7 +31,7 @@ export default class Player {
 
   get legalMoves() {
     // which cells are free to choose?
-    // (in Connect-4 this would be a check of which columns that are not full instead)
+    // anvädner Thomas kod då vi får fel annars, Dumma boten pajar efter ett tag den vill forsätta göra drag i columner som är fulla
     let moves = [];
     for (let row = 0; row < this.board.matrix.length; row++) {
       for (let column = 0; column < this.board.matrix[0].length; column++) {
