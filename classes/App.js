@@ -17,19 +17,24 @@ export default class App {
       this.playerYellow = playerYellow;
       this.namesEntered = true;
     }
-    else { this.askForNames(); }
+    else { this.askForNamesAndTypes(); }
     this.render();
   }
 
-  async askForNames(color = 'Red') {
+  async askForNamesAndTypes(color = 'Red') {
     const okName = name => name.match(/[a-zåäöA-ZÅÄÖ]{2,}/);
     let playerName = '';
+    let playerType ='';
     while (!okName(playerName)) {
       playerName = await this.dialog.ask(`Enter the name of player ${color}:`);
       await sleep(500);
+      playerType = await this.dialog.ask(
+        `What type of player is ${playerName}?`,
+        ['Human', 'A dumb bot', 'A smart bot']
+      );
     }
-    this['player' + color] = new Player(playerName, color);
-    if (color === 'Red') { this.askForNames('Yellow'); return; }
+    this['player' + color] = new Player(playerName, playerType, color, this.board);
+    if (color === 'Red') { this.askForNamesAndTypes('Yellow'); return; }
     this.namesEntered = true;
     this.render();
   }
