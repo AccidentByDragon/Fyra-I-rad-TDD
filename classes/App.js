@@ -15,21 +15,32 @@ export default class App {
     if (playerRed && playerYellow) {
       this.playerRed = playerRed;
       this.playerYellow = playerYellow;
+
+      this.playerRed.board = this.board;
+      this.playerYellow.board = this.board;
+
       this.namesEntered = true;
+      this.board.initiateBotMove();
     }
-    else { this.askForNames(); }
+    else { this.askForNamesAndTypes(); }
     this.render();
   }
 
-  async askForNames(color = 'Red') {
+  async askForNamesAndTypes(color = 'Red') {
     const okName = name => name.match(/[a-zåäöA-ZÅÄÖ]{2,}/);
     let playerName = '';
+    let playerType = '';
     while (!okName(playerName)) {
       playerName = await this.dialog.ask(`Enter the name of player ${color}:`);
       await sleep(500);
+      playerType = await this.dialog.ask(
+        `Which type of player is ${playerName}?`,
+        ['Human', 'A dumb bot', 'A smart bot']
+        //vi kan lägga till en smart bot senare när vi fått en DUmb bot fungerande och löst Win check problemet då Smartbot fungerar inte utan wincheck och wincombo
+      )
     }
-    this['player' + color] = new Player(playerName, color);
-    if (color === 'Red') { this.askForNames('Yellow'); return; }
+    this['player' + color] = new Player(playerName, playerType, color, this.board);
+    if (color === 'Red') { this.askForNamesAndTypes('Yellow'); return; }
     this.namesEntered = true;
     this.render();
   }

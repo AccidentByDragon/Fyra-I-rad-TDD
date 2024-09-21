@@ -4,7 +4,8 @@ import WinChecker from './WinChecker.js';
 
 // Game sounds
 const playSound = new Audio('../public/sounds/plasticPlop.mp3');
-const winningSound = new Audio('../public/sounds/katching.mp3');
+// Evetually a sound highlighting when the game is a draw.
+//const drawSound = new Audio('../public/sounds/plingplong.mp3');
 
 export default class Board {
 
@@ -23,7 +24,7 @@ export default class Board {
     this.winner = false;
     this.isADraw = false;
     this.gameOver = false;
-    this.winningCombo = [];
+    this.winningCombo = null; //byt till []?
     this.latestMove = [];
   }
 
@@ -45,15 +46,10 @@ export default class Board {
       ${this.matrix.map((row, rowIndex) =>
       row.map((cell, columnIndex) =>/*html*/`
         <div
-          class="cell ${cell
-        + (this.latestMove[-1] === rowIndex && this.latestMove[1] === columnIndex
-          ? 'latest move' : '')
-        + (cell === ' ' && this.matrix[rowIndex + 1]?.[columnIndex] !== ''
-          ? 'first-free' : '')
-        + (this.winningCombo.includes('row' + rowIndex + 'column' + columnIndex)
-          ? 'in-win' : '')
-        }"
-          
+          class="cell ${cell} 
+          ${this.winningCombo && this.winningCombo.cells.find(
+        cell => cell.row === rowIndex && cell.column === columnIndex
+      ) ? 'in-win' : ''}"          
           onclick="makeMoveOnClick(${columnIndex})">
         </div>
       `).join('')).join('')}
@@ -94,7 +90,7 @@ export default class Board {
 
     // Place the piece in the lowest available row
     this.latestMove = [row, column]
-    this.matrix[row - 1][column] = this.currentPlayerColor;
+    this.matrix[row - 1][column].color = this.currentPlayerColor;
 
     //Plays the drop sound
     playSound.play();
@@ -104,49 +100,22 @@ export default class Board {
     this.isADraw = this.drawCheck();
 
     // The game is over if someone has won or if it's a draw
-    this.gameOver = this.winner || this.isADraw;
+    this.gameOver = !!(this.winner || this.isADraw);
     // Change the current player color
     !this.gameOver
       && (this.currentPlayerColor = this.currentPlayerColor === 'Red' ? 'Yellow' : 'Red');
 
     // Return true if the move could be made
     document.body.setAttribute('moveInProgress', false);
+    this.initiateBotMove();
     return true;
   }
 
 
   winCheck() {
-    let m = this.matrix;
-    let offsets = [
-      [[0, 0], [0, 1], [0, 2], [0, 3]],  // horizontal win
-      [[0, 0], [1, 0], [2, 0], [3, 0]],  // vertical win
-      [[0, 0], [1, 1], [2, 2], [3, 3]],  // diagonal 1 win
-      [[0, 0], [1, -1], [2, -2], [3, -3]] // diagonal 2 win
-    ];
-    // loop through each player color, each position (row + column),
-    // each winType/offsets and each offset coordinate added to the position
-    // to check if someone has won :)
-    for (let color of ['Red', 'Yellow']) {
-      // r = row, c = column
-      for (let r = 0; r < m.length; r++) {
-        for (let c = 0; c < m[0].length; c++) {
-          // ro = row offset, co = column offset
-          for (let winType of offsets) {
-            let colorsInCombo = '', combo = [];
-            for (let [ro, co] of winType) {
-              colorsInCombo += (m[r + ro] || [])[c + co];
-              combo.push('row' + (r + ro) + 'column' + (c + co));
-            }
-            if (colorsInCombo === color.repeat(4)) {
-              this.winningCombo = combo; // remember the winning combo
-              winningSound.play(); //Plays the winning sound
-              return color;
-            }
-          }
-        }
-      }
-    }
-    return false;
+    console.log("running wincheck");
+    //console.log(winningCombo); // winningCOmbo blir undefined av någon anledning
+    return this.winChecker.winCheck();
   }
 
   // check for a draw/tie
@@ -155,5 +124,16 @@ export default class Board {
     return !this.winCheck() && !this.matrix.flat().map(cell => cell.color).includes(' ');
   }
 
+  async initiateBotMove() {
+    // get the current player
+    let player = this.currentPlayerColor === 'Red' ? this.app.playerRed : this.app.playerYellow;
+    // if the game isn't over and the player exists and the player is non-human / a bot
+    if (!this.gameOver && player && player.type !== 'Human') {
+      document.body.classList.add('botPlaying');
+      await player.makeBotMove();
+      this.app.render();
+      document.body.classList.remove('botPlaying');
+    }
+  }
 }
 

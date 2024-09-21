@@ -1,4 +1,6 @@
-import WinCombo from "./winCombo.js";
+import WinCombo from "./WinCombo.js";
+
+const winningSound = new Audio('../public/sounds/katching.mp3');
 
 export default class WinChecker {
 
@@ -39,7 +41,12 @@ export default class WinChecker {
     }
   }
 
-}
-// winningSound.play();
+  winCheck() {
+    for (let winCombo of this.winCombos) {
+      if (winCombo.isWin('Red')) { this.board.winningCombo = winCombo; return 'Red', winningSound.play(); }
+      if (winCombo.isWin('Yellow')) { this.board.winningCombo = winCombo; return 'Yellow', winningSound.play(); }
+    }
+    return false;
+  }
 
-// Befinner mig i Thomas "video 2-5.mp4" vid ca 21:03 i tidslinjen...
+}
