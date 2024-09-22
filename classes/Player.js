@@ -17,7 +17,7 @@ export default class Player {
     // await sleep(1500);
     let row, column;
     if (this.type === 'A dumb bot') {
-      await sleep(Math.ceil(Math.random() * 2800) + 600);
+      await sleep(Math.ceil(Math.random() * 2600) + 500);
       [row, column] = this.makeDumbBotMove();
     }
     if (this.type === 'A smart bot') {
