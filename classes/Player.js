@@ -14,12 +14,14 @@ export default class Player {
   async makeBotMove() {
     // a short delay to make the bot seem more 'human'
     // (simulate that it takes time for it to think)
-    await sleep(500);
+    // await sleep(1500);
     let row, column;
     if (this.type === 'A dumb bot') {
+      await sleep(2600);
       [row, column] = this.makeDumbBotMove();
     }
     if (this.type === 'A smart bot') {
+      await sleep(500);
       [row, column] = this.makeSmartBotMove();
     }
     await this.board.makeMove(this.color, column);
