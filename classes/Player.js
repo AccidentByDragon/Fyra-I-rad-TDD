@@ -17,11 +17,11 @@ export default class Player {
     // await sleep(1500);
     let row, column;
     if (this.type === 'A dumb bot') {
-      await sleep(2600);
+      await sleep(Math.ceil(Math.random() * 2800) + 600);
       [row, column] = this.makeDumbBotMove();
     }
     if (this.type === 'A smart bot') {
-      await sleep(500);
+      await sleep(Math.ceil(Math.random() * 800) + 450);
       [row, column] = this.makeSmartBotMove();
     }
     await this.board.makeMove(this.color, column);
