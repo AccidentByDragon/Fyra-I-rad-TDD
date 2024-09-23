@@ -43,6 +43,7 @@ export default class App {
     if (color === 'Red') { this.askForNamesAndTypes('Yellow'); return; }
     this.namesEntered = true;
     this.render();
+    this.board.initiateBotMove();
   }
 
   namePossesive(name) {
