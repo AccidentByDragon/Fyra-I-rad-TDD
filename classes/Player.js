@@ -159,7 +159,7 @@ export default class Player {
   score(orgState, futureState) {
     // priorities - what is considered the best outcome in each winCombo
     let priorities = [
-      { me: 4 }, { opp: 3 }, { me: 3 }, { opp: 2 }, { me: 2 }
+      { me: 4 }, { opp: 4 }, { opp: 3 }, { me: 3 }, { opp: 2},{ me: 2 }
     ];
     // score variable - which we will use to calculate a score
     let score = 0;
