@@ -21,7 +21,7 @@ export default class Player {
       [row, column] = this.makeDumbBotMove();
     }
     if (this.type === 'A smart bot') {
-      await sleep(Math.ceil(Math.random() * 800) + 450);
+      await sleep(Math.ceil(Math.random() * 800) + 350);
       [row, column] = this.makeSmartBotMove();
     }
     await this.board.makeMove(this.color, column);
