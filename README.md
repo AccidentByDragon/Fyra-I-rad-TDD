@@ -121,3 +121,7 @@ Automatiska tester:
 7: Play again - startar om spelet MED SAMMA SPELARE (väljer motsatt spelar får börja precis som vid game over). Samma test som test 5.
 8: "reset the game" - Test att spelet startar om med NYA spelare. (Ändra texten "reset the game" till något tydligare)
 9: När inga fler drag är möjliga och ingen har vunnit blir det oavgjort (it´s a tie).
+
+
+# Test sprint 3
+Smart bot vinner alltid mot dum.
