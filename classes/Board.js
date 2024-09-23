@@ -43,12 +43,12 @@ export default class Board {
     // render the board as html
     return /*html*/`<div class="board">
       ${this.matrix.map((row, rowIndex) =>
-        row.map((cell, columnIndex) =>/*html*/`
+      row.map((cell, columnIndex) =>/*html*/`
         <div
           class="cell ${cell} 
           ${this.winningCombo && this.winningCombo.cells.find(
-          cell => cell.row === rowIndex && cell.column === columnIndex
-        ) ? 'in-win' : ''}"          
+        cell => cell.row === rowIndex && cell.column === columnIndex
+      ) ? 'in-win' : ''}"          
           onclick="makeMoveOnClick(${columnIndex})">
         </div>
       `).join('')).join('')}
@@ -112,7 +112,7 @@ export default class Board {
 
 
   winCheck() {
-    console.log("running wincheck");    
+    console.log("running wincheck");
     //console.log(winningCombo); // winningCOmbo blir undefined av någon anledning
     return this.winChecker.winCheck();
   }

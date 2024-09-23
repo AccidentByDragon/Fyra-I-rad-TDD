@@ -20,7 +20,7 @@ export default class Player {
       [row, column] = this.makeDumbBotMove();
     }
     if (this.type === 'A smart bot') {
-       [row, column] = this.makeSmartBotMove();
+      [row, column] = this.makeSmartBotMove();
     }
     await this.board.makeMove(this.color, column);
   }
@@ -47,7 +47,7 @@ export default class Player {
     let { row, column } = scores[0];
     return [row, column];
   }
-
+  
   // test score for smart bot
   score(orgState, futureState) {
     // priorities - what is considered the best outcome in each winCombo
