@@ -18,7 +18,9 @@ export default class Player {
     let row, column;
     if (this.type === 'A dumb bot') {
       await sleep(Math.ceil(Math.random() * 2600) + 500);
-      [row, column] = this.makeDumbBotMove();
+      console.log(this.makeDumbBotMove());
+
+      [row, column] = this.makeDumbBotMove().filter((moves => moves == "undefined"));      
     }
     if (this.type === 'A smart bot') {
       await sleep(Math.ceil(Math.random() * 800) + 350);
@@ -49,7 +51,6 @@ export default class Player {
     let { row, column } = scores[0];
     return [row, column];
   }
-  
   // test score for smart bot
   score(orgState, futureState) {
     // priorities - what is considered the best outcome in each winCombo

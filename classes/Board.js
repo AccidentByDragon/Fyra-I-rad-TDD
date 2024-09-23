@@ -112,7 +112,6 @@ export default class Board {
     return true;
   }
 
-
   winCheck() {
     //console.log("running wincheck");    
     //console.log(winningCombo); // winningCOmbo blir undefined av någon anledning
@@ -122,7 +121,14 @@ export default class Board {
   // check for a draw/tie
   drawCheck() {
     // if no one has won and no empty positions then it's a draw
-    return !this.winCheck() && !this.matrix.flat().map(cell => cell.color).includes(' ') && drawSound.play();
+    if(!this.winCheck() && !this.matrix.flat().map(cell => cell.color).includes(' ')) {
+      drawSound.play();
+      return !this.winCheck() && !this.matrix.flat().map(cell => cell.color).includes(' ');
+    }
+    else {
+      return false;
+    }  
+    
   }
 
   async initiateBotMove() {
