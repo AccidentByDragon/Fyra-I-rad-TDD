@@ -3,7 +3,7 @@ import Cell from './Cell.js';
 export default class WinCombo {
 
   constructor(cells) {
-    console.log(cells);
+    // console.log(cells);
 
     cells = cells.filter(x => x instanceof Cell);
 

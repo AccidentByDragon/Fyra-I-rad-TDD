@@ -43,8 +43,16 @@ export default class WinChecker {
 
   winCheck() {
     for (let winCombo of this.winCombos) {
-      if (winCombo.isWin('Red')) { this.board.winningCombo = winCombo; return 'Red', winningSound.play(); }
-      if (winCombo.isWin('Yellow')) { this.board.winningCombo = winCombo; return 'Yellow', winningSound.play(); }
+      if (winCombo.isWin('Red')) {
+        this.board.winningCombo = winCombo;
+        winningSound.play();
+        return 'Red';
+      }
+      if (winCombo.isWin('Yellow')) {
+        this.board.winningCombo = winCombo;
+        winningSound.play();
+        return 'Yellow';
+      }
     }
     return false;
   }
