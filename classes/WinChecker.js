@@ -1,5 +1,7 @@
 import WinCombo from "./WinCombo.js";
 
+const winningSound = new Audio('../public/sounds/katching.mp3');
+
 export default class WinChecker {
 
   constructor(board) {
@@ -40,14 +42,11 @@ export default class WinChecker {
   }
 
   winCheck() {
-    for (let winCombo of this.winCombos) {      
-      if (winCombo.isWin('Red')) { this.board.winningCombo = winCombo; return 'Red';}
-      if (winCombo.isWin('Yellow')) { this.board.winningCombo = winCombo; return 'Yellow';}
+    for (let winCombo of this.winCombos) {
+      if (winCombo.isWin('Red')) { this.board.winningCombo = winCombo; return 'Red', winningSound.play(); }
+      if (winCombo.isWin('Yellow')) { this.board.winningCombo = winCombo; return 'Yellow', winningSound.play(); }
     }
     return false;
   }
 
 }
-// winningSound.play();
-
-// Befinner mig i Thomas "video 2-5.mp4" vid ca 21:03 i tidslinjen...
