@@ -18,7 +18,9 @@ export default class Player {
     let row, column;
     if (this.type === 'A dumb bot') {
       await sleep(Math.ceil(Math.random() * 2600) + 500);
-      [row, column] = this.makeDumbBotMove();
+      console.log(this.makeDumbBotMove());
+
+      [row, column] = this.makeDumbBotMove().filter((moves => moves == "undefined"));      
     }
     if (this.type === 'A smart bot') {
       await sleep(Math.ceil(Math.random() * 800) + 350);
@@ -54,7 +56,7 @@ export default class Player {
   score(orgState, futureState) {
     // priorities - what is considered the best outcome in each winCombo
     let priorities = [
-      { me: 4 }, { opp: 3 }, { me: 3 }, { opp: 2 }, { me: 2 }
+      { me: 4 }, { opp: 4 }, { opp: 3 }, { me: 3 }, { opp: 2 }, { me: 2 }
     ];
     // score variable - which we will use to calculate a score
     let score = 0;
@@ -114,11 +116,10 @@ export default class Player {
       });
     }
     return state;
-    this.opponent = this.color === 'Red' ? 'Yellow' : 'Red';
-    this.board = board;
   }
 
-  async makeBotMove() {
+  // Vi behöver städa upp detta, något blev rörigt när vi gjorde merges
+/*   async makeBotMove() {
     // a short delay to make the bot seem more 'human'
     // (simulate that it takes time for it to think)
     await sleep(500);
@@ -220,5 +221,5 @@ export default class Player {
     }
     return state;
   }
-
+ */
 }

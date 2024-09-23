@@ -20,5 +20,5 @@ export default async function registerPlayers() {
   expect(app.playerRed.name).toBe('Anna');
   expect(app.playerYellow.name).toBe('Beata');
   
-  return body;
+  return { body, app };
 }
