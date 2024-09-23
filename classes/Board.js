@@ -4,7 +4,8 @@ import WinChecker from './WinChecker.js';
 
 // Game sounds
 const playSound = new Audio('../public/sounds/plasticPlop.mp3');
-const winningSound = new Audio('../public/sounds/katching.mp3');
+// Evetually a sound highlighting when the game is a draw.
+const drawSound = new Audio('../public/sounds/plingplong.mp3');
 
 export default class Board {
 
@@ -23,6 +24,7 @@ export default class Board {
     this.winner = false;
     this.isADraw = false;
     this.gameOver = false;
+    this.winningCombo = null; //byt till []?
     this.winningCombo = null; //byt till []?
     this.latestMove = [];
   }
@@ -112,7 +114,7 @@ export default class Board {
 
 
   winCheck() {
-    console.log("running wincheck");
+    //console.log("running wincheck");    
     //console.log(winningCombo); // winningCOmbo blir undefined av någon anledning
     return this.winChecker.winCheck();
   }
@@ -120,7 +122,7 @@ export default class Board {
   // check for a draw/tie
   drawCheck() {
     // if no one has won and no empty positions then it's a draw
-    return !this.winCheck() && !this.matrix.flat().map(cell => cell.color).includes(' ');
+    return !this.winCheck() && !this.matrix.flat().map(cell => cell.color).includes(' ') && drawSound.play();
   }
 
   async initiateBotMove() {
