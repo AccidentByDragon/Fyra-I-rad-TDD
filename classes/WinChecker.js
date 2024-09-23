@@ -21,7 +21,7 @@ export default class WinChecker {
       [[0, 0], [1, -1], [2, -2], [3, -3]] // diagonal 2 win
     ];
 
-
+    
     // r = row, c = column
     for (let r = 0; r < m.length; r++) {
       for (let c = 0; c < m[0].length; c++) {
