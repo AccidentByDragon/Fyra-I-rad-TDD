@@ -10,7 +10,7 @@ import waitUntil from './helpers/mock-help/waitUntil.js';
 
 // A common task - something we do in the prgoram flow
 // in several tests
-import registerPlayers from './helpers/commonTasks/registerPlayers.js';
+import registerPlayers from './helpers/common tasks/registerPlayers.js';
 
 // The App class from the program
 import App from '../classes/App.js';

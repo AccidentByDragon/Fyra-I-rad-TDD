@@ -23,7 +23,7 @@ export default class Board {
     this.winner = false;
     this.isADraw = false;
     this.gameOver = false;
-    this.winningCombo = null; //byt till [] senare?
+    this.winningCombo = null; //byt till []?
     this.latestMove = [];
   }
 
@@ -99,7 +99,7 @@ export default class Board {
     this.isADraw = this.drawCheck();
 
     // The game is over if someone has won or if it's a draw
-    this.gameOver = this.winner || this.isADraw;
+    this.gameOver = !!(this.winner || this.isADraw);
     // Change the current player color
     !this.gameOver
       && (this.currentPlayerColor = this.currentPlayerColor === 'Red' ? 'Yellow' : 'Red');
