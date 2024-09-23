@@ -45,9 +45,9 @@ export default class Board {
         + (this.latestMove[-1] === rowIndex && this.latestMove[1] === columnIndex
           ? 'latest move' : '')
         + (cell === ' ' && this.matrix[rowIndex + 1]?.[columnIndex] !== ''
-            ? 'first-free' : '')
+          ? 'first-free' : '')
         + (this.winningCombo.includes('row' + rowIndex + 'column' + columnIndex)
-              ? 'in-win' : '') 
+          ? 'in-win' : '')
         }"
           
           onclick="makeMoveOnClick(${columnIndex})">
@@ -58,7 +58,7 @@ export default class Board {
 
   async makeMove(color, column) {
 
-    if (document.body.getAttribute('moveInProgress') === 'true') {return;}
+    if (document.body.getAttribute('moveInProgress') === 'true') { return; }
     // Don't make any move if the game is over
     if (this.gameOver) { return false; }
 
@@ -74,24 +74,26 @@ export default class Board {
     // Check that the column is within bounds
     if (column < 0 || column >= this.matrix[0].length) { return false; }
 
-    if (this.matrix[0][column] !== ' ') {return false;}
+    if (this.matrix[0][column] !== ' ') { return false; }
     // Find the lowest available row in the chosen column
-   document.body.setAttribute('moveinProgress', true);
-   this.latestMove =[];
-   let row = 0;
-   while (row < 6 && this.matrix[row][column] === ' ') {
-    this.matrix[row][column] = this.currentPlayerColor;
-    this.app.render();
-    await sleep(50);
-    this.matrix[row][column] = ' ';
-    row++;
-   }
+    document.body.setAttribute('moveinProgress', true);
+    this.latestMove = [];
+    let row = 0;
+    while (row < 6 && this.matrix[row][column] === ' ') {
+      this.matrix[row][column] = this.currentPlayerColor;
+      this.app.render();
+      await sleep(50);
+      this.matrix[row][column] = ' ';
+      row++;
+    }
 
     // Place the piece in the lowest available row
     this.latestMove = [row, column]
-    this.matrix[row -1][column] = this.currentPlayerColor;
+    this.matrix[row - 1][column] = this.currentPlayerColor;
+
 
     playSound.play(); //Plays the drop sound
+
 
     // Check if someone has won or if it's a draw/tie and update properties
     this.winner = this.winCheck();
@@ -99,10 +101,10 @@ export default class Board {
 
     // The game is over if someone has won or if it's a draw
     this.gameOver = this.winner || this.isADraw;
-// Change the current player color
+    // Change the current player color
     !this.gameOver
       && (this.currentPlayerColor = this.currentPlayerColor === 'Red' ? 'Yellow' : 'Red');
-    
+
     // Return true if the move could be made
     document.body.setAttribute('moveInProgress', false);
     return true;
@@ -117,7 +119,7 @@ export default class Board {
       [[0, 0], [1, 1], [2, 2], [3, 3]],  // diagonal 1 win
       [[0, 0], [1, -1], [2, -2], [3, -3]] // diagonal 2 win
     ];
-  // loop through each player color, each position (row + column),
+    // loop through each player color, each position (row + column),
     // each winType/offsets and each offset coordinate added to the position
     // to check if someone has won :)
     for (let color of ['Red', 'Yellow']) {

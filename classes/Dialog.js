@@ -3,6 +3,17 @@ export default class Dialog {
   // call with await!
   ask(question, limitedAnswers) {
 
+    // if (globalThis.mockAnswer) {
+    //   let answer = globalThis.mockAnswer;
+    //   delete globalThis.mockAnswer;
+    //   return answer
+    // }
+
+    let mockAnswers = globalThis.mockAnswers;
+    if (mockAnswers instanceof Array && mockAnswers.length > 0) {
+      return mockAnswers.shift();
+    } //Se video 9-2 video 5  -> 36 min in i video.
+
     // render html for the dialog
     let dialogElement = document.querySelector('dialog');
     dialogElement.innerHTML = /*html*/`
