@@ -4,7 +4,7 @@ import { expect, test } from 'vitest';
 // import getDocument from './helpers/mock-help/getDocument.js';
 import click from './helpers/mock-help/triggerOnclick.js';
 
-import regPlayHumanVsAi from './helpers/common tasks/registerPlayersAIvsHuman.js';
+import regPlayHumanVsAi from './helpers/common tasks/registerPlayersHumanvsAi.js';
 
 import { getMoveFromExternalAI } from './helpers/common tasks/miner.js';
 
