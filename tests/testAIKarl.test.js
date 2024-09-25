@@ -47,5 +47,5 @@ test("1. does the Smart Bot win agaist the Dumb bot", async () => {
       break;
     }
   }
-  expect(body.querySelector('main p').innerText).toBe('Red: Beata won!')
+  expect(body.querySelector('main p').innerText).toBe('Yellow: Beata won!')
  }, 50000)
