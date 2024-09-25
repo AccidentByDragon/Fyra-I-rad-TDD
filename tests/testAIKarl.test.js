@@ -27,8 +27,9 @@ test("1. does the Smart Bot win agaist the Dumb bot", async () => {
   let { body, app } = await regPlayersAIvsAI();  
   let state = '';
   let currentstate = app.board.app.matrix;
-  console.table(app.board.matrix.map(x => x.map(y => y.color === 'Red' ? 'X' : y.color === 'Yellow' ? 'O' : ' '))); 
-  while (!app.board.gameOver && state.length < 42) 
+  console.table(app.board.matrix.map(x => x.map(y => y.color === 'Red' ? 'X' : y.color === 'Yellow' ? 'O' : ' ')));
+  console.log(body.innerHTML);
+   while (!app.board.gameOver && state.length < 42) 
   {
     let oldstate = app.board.matrix;
     let before = [...body.querySelectorAll('.cell')].map(x => x.getAttribute('class'));
