@@ -124,8 +124,11 @@ export default class Player {
     return state;
   }
 
-  //Karls försök att göra botten smartare
-
+  //Karls försök att göra botten smartare med hjälp av chatGPT
+  /* Frågor som stälts till Chatgpt:
+    How to make this Connect 4 bot think one move in advance
+    
+  */
   scoreSmarter(orgState, futureState) {
     let priorities = [
       { me: 4 }, { opp: 4 }, { opp: 3 }, { me: 3 }, { opp: 2 }, { me: 2 }
