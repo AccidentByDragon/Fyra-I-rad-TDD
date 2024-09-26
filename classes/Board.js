@@ -4,7 +4,8 @@ import WinChecker from './WinChecker.js';
 
 // Game sounds
 const playSound = new Audio('../public/sounds/plasticPlop.mp3');
-const winningSound = new Audio('../public/sounds/katching.mp3');
+// Evetually a sound highlighting when the game is a draw.
+const drawSound = new Audio('../public/sounds/plingplong.mp3');
 
 export default class Board {
 
@@ -23,7 +24,8 @@ export default class Board {
     this.winner = false;
     this.isADraw = false;
     this.gameOver = false;
-    this.winningCombo = null; //byt till [] senare?
+    this.winningCombo = null; //byt till []?
+    this.winningCombo = null; //byt till []?
     this.latestMove = [];
   }
 
@@ -99,7 +101,7 @@ export default class Board {
     this.isADraw = this.drawCheck();
 
     // The game is over if someone has won or if it's a draw
-    this.gameOver = this.winner || this.isADraw;
+    this.gameOver = !!(this.winner || this.isADraw);
     // Change the current player color
     !this.gameOver
       && (this.currentPlayerColor = this.currentPlayerColor === 'Red' ? 'Yellow' : 'Red');
@@ -110,9 +112,8 @@ export default class Board {
     return true;
   }
 
-
   winCheck() {
-    console.log("running wincheck");    
+    //console.log("running wincheck");    
     //console.log(winningCombo); // winningCOmbo blir undefined av någon anledning
     return this.winChecker.winCheck();
   }
@@ -120,7 +121,14 @@ export default class Board {
   // check for a draw/tie
   drawCheck() {
     // if no one has won and no empty positions then it's a draw
-    return !this.winCheck() && !this.matrix.flat().map(cell => cell.color).includes(' ');
+    if(!this.winCheck() && !this.matrix.flat().map(cell => cell.color).includes(' ')) {
+      drawSound.play();
+      return !this.winCheck() && !this.matrix.flat().map(cell => cell.color).includes(' ');
+    }
+    else {
+      return false;
+    }  
+    
   }
 
   async initiateBotMove() {
