@@ -5,12 +5,13 @@ import { expect, test } from 'vitest';
 import click from './helpers/mock-help/triggerOnclick.js';
 
 import regPlayHumanVsAi from './helpers/common tasks/registerPlayersHumanvsAi.js';
+import regPlayAiVsHuman from './helpers/common tasks/registerPlayersAIvsHuman.js';
 
 import { getMoveFromExternalAI } from './helpers/common tasks/miner.js';
 
 import sleep from './helpers/mock-help/sleep.js';
 
-test('Externa test to our own smart bot', async () => {
+test('Externa test to our own smart bot external bot goes first', async () => {
   const {body, app} = await regPlayHumanVsAi();
   let state = '';
   let externalAiLevel = 1;
@@ -46,3 +47,4 @@ test('Externa test to our own smart bot', async () => {
   }
 
 }, 100000)
+
