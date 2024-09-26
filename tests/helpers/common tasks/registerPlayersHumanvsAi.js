@@ -11,7 +11,7 @@ globalThis.mockMinimalSleep = true;
 // do this (including creating a new App) and return the body after its done
 export default async function registerPlayers() {
   let { body } = getDocument();
-  globalThis.mockAnswers = ['Anna', 'A smart bot', 'Beata', 'Human'];
+  globalThis.mockAnswers = ['Anna', 'Human', 'Beata', 'A smart bot'];
   let app = new App();
   // wait until the dom does not have p tag in the main tag with 'Enter names'
   await waitUntil(() =>
