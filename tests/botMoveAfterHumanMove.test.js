@@ -4,7 +4,7 @@ import regPlayHumanVsAi from './helpers/common tasks/registerPlayersAIvsHuman.js
 import sleep from './helpers/mock-help/sleep.js';
 import regPlayHumanStart from './helpers/common tasks/registerPlayersHumanvsBot.js';
 
-// Test: Simulate multiple turns and check game state after each move
+// Test nummer 1:
 test('Bot makes its move automatically AFTER human move', async () => {
   const { body, app } = await regPlayHumanVsAi();
 
@@ -61,21 +61,14 @@ test('Bot makes its move automatically AFTER human move', async () => {
 
 
 
-//test nummer 2
-
-// Test: Bot makes its move automatically human move
+//test nummer 2:
 test('Bot makes its move automatically BEFORE human move', async () => {
   const { body, app } = await regPlayHumanStart();
 
   console.log("Initial board state:");
   console.table(app.board.matrix.map(row => row.map(cell => cell.color || ' ')));
 
-  await sleep(1000);  // Allow some time for the bot to move
-
-  // Ensure that bot move is triggered
-  /*   if (!app.botMoveTriggered) {
-      console.log("Bot move not triggered automatically, forcing the bot to move.");
-      app.triggerBotMove();  */
+  await sleep(1000);  
 
   const botMadeMove = [...body.querySelectorAll('.cell')]
     .some(cell => cell.getAttribute('class').includes('Red'));
