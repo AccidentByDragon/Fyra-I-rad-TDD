@@ -26,7 +26,7 @@ import sleep from './helpers/mock-help/sleep.js';
  Dumb bot vs Smart bot tests
 */
 
-test("1. does the Smart Bot win agaist the Dumb bot", async () => {
+test("1. Does the Smart Bot win agaist the Dumb bot", async () => {
   let { body, app } = await regPlayersAIvsAI();  
   let state = '';
   let currentstate = app.board.app.matrix;
@@ -62,7 +62,7 @@ test('2. Can our Smart bot beat the external AI if it starts', async () => {
   while (!app.board.gameOver && state.length < 42) {
     // Get our bot move.
     let before = [...body.querySelectorAll('.cell')].map(x => x.getAttribute('class'));
-    await sleep(500);
+    //await sleep(500);
     console.log(state.length, state);
     console.table(app.board.matrix.map(x => x.map(y => y.color === 'Red' ? 'X' : y.color === 'Yellow' ? 'O' : ' ')));
 
