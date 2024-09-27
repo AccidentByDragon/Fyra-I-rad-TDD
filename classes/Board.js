@@ -1,6 +1,7 @@
 import Cell from './Cell.js'
 import sleep from './helpers/sleep.js';
 import WinChecker from './WinChecker.js';
+import Network from './helpers/Network.js';
 
 // Game sounds
 const playSound = new Audio('../public/sounds/plasticPlop.mp3');
@@ -25,7 +26,7 @@ export default class Board {
     this.isADraw = false;
     this.gameOver = false;
     this.winningCombo = null; //byt till []?
-    this.winningCombo = null; //byt till []?
+    //this.winningCombo = null; //byt till []?
     this.latestMove = [];
   }
 
@@ -33,7 +34,7 @@ export default class Board {
   render() {
     // then call the app render method
     globalThis.makeMoveOnClick = async (column) =>
-      (await this.makeMove(this.currentPlayerColor, column))
+      (await this.makeMove(this.currentPlayerColor, column, true))
       && this.app.render();
 
     // so we can apply different styling depending on them
@@ -57,9 +58,19 @@ export default class Board {
     </div>`;
   }
 
-  async makeMove(color, column) {
+  async makeMove(color, column, fromClick) {
+    let player = color === 'Red' ? this.app.playerRed : this.app.playerYellow;
 
     if (document.body.getAttribute('moveInProgress') === 'true') { return; }
+
+    //in Tomas code
+    //
+     // don't allow move fromClick if it's network play and not myColor
+     if (fromClick && this.app.networkPlay && color !== this.app.myColor) {
+      return false;
+    }
+    // don't allow move fromCLick if it's a bots turn to play
+    if (fromClick && player.type !== 'Human') { return false; }
     // Don't make any move if the game is over
     if (this.gameOver) { return false; }
 
@@ -102,6 +113,11 @@ export default class Board {
 
     // The game is over if someone has won or if it's a draw
     this.gameOver = !!(this.winner || this.isADraw);
+
+// if network play then send the move
+    this.app.networkPlay && this.app.myColor === color &&
+    Network.send({ color, row, column });
+
     // Change the current player color
     !this.gameOver
       && (this.currentPlayerColor = this.currentPlayerColor === 'Red' ? 'Yellow' : 'Red');
