@@ -2,10 +2,15 @@ import Dialog from './Dialog.js';
 import Board from './Board.js';
 import Player from './Player.js';
 import sleep from './helpers/sleep.js';
+import generateCode from './helpers/generateCode.js';
 
 export default class App {
 
   constructor(playerRed, playerYellow, whoStarts = 'Red') {
+
+// network related properties
+    this.networkPlay = networkPlay;
+    this.myColor = myColor; // note: only used in network play
 
     this.dialog = new Dialog();
     this.board = new Board(this);
@@ -21,10 +26,16 @@ export default class App {
 
       this.namesEntered = true;
       this.board.initiateBotMove();
+
+      if (networkPlay) {
+        Network.replaceListener(obj => this.networkListener(obj));
+      }
     }
     else { this.askForNames(); }
     this.render();
   }
+
+  
 
   async askForNames(color = 'Red') {
     const okName = name => name.match(/[a-zåäöA-ZÅÄÖ]{2,}/);
