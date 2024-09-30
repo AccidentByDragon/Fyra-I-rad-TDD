@@ -1,15 +1,16 @@
 iframe {
     width: 50vw;
     height: 100vh;
+    top: 0;
     position: fixed;
   }
   
-  iframe#Red {
-    top: 0;
+  iframe#playerX {
+   
     left: 0;
   }
   
-  iframe#Yellow {
-    top: 0;
+  iframe#playerO {
+    
     left: 50vw;
   }
