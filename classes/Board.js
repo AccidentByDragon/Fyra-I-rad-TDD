@@ -152,10 +152,10 @@ export default class Board {
     let player = this.currentPlayerColor === 'Red' ? this.app.playerRed : this.app.playerYellow;
     // if the game isn't over and the player exists and the player is non-human / a bot
     if (!this.gameOver && player && player.type !== 'Human') {
-      document.body.classList.add('botPlaying');
+      document.body.classList.add('notMyTurn');
       await player.makeBotMove();
       this.app.render();
-      document.body.classList.remove('botPlaying');
+      document.body.classList.remove('notMyTurn');
     }
   }
 
