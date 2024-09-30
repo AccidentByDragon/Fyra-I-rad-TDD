@@ -33,8 +33,8 @@ export default class Board {
   // render = output/draw something
   render() {
     // then call the app render method
-    globalThis.makeMoveOnClick = async (column) =>
-      (await this.makeMove(this.currentPlayerColor, column, true))
+    globalThis.makeMoveOnClick = (column) =>
+       this.makeMove(this.currentPlayerColor, column, true)
       && this.app.render();
 
     // so we can apply different styling depending on them
@@ -58,10 +58,11 @@ export default class Board {
     </div>`;
   }
 
-  async makeMove(color, column, fromClick) {
+  //async makeMove(color, column, fromClick) {
+  makeMove(color, column, fromClick) {
     let player = color === 'Red' ? this.app.playerRed : this.app.playerYellow;
 
-    if (document.body.getAttribute('moveInProgress') === 'true') { return; }
+    //if (document.body.getAttribute('moveInProgress') === 'true') { return; }
 
     //in Tomas code
     //
@@ -89,13 +90,13 @@ export default class Board {
     if (this.matrix[0][column].color !== ' ') { return false; }
 
     // Find the lowest available row in the chosen column
-    document.body.setAttribute('moveInProgress', true);
+    //document.body.setAttribute('moveInProgress', true);
     this.latestMove = [];
     let row = 0;
     while (row < 6 && this.matrix[row][column].color === ' ') {
       this.matrix[row][column].color = this.currentPlayerColor;
       this.app.render();
-      await sleep(50);
+       //sleep(50);
       this.matrix[row][column].color = ' '
       row++;
     }
@@ -107,6 +108,8 @@ export default class Board {
     //Plays the drop sound
     playSound.play();
 
+    // Render only after the move is finalized
+    this.app.render();
     // Check if someone has won or if it's a draw/tie and update properties
     this.winner = this.winCheck();
     this.isADraw = this.drawCheck();
@@ -116,14 +119,14 @@ export default class Board {
 
 // if network play then send the move
     this.app.networkPlay && this.app.myColor === color &&
-    Network.send({ color, row, column });
+    Network.send({ color, column });
 
     // Change the current player color
     !this.gameOver
       && (this.currentPlayerColor = this.currentPlayerColor === 'Red' ? 'Yellow' : 'Red');
 
     // Return true if the move could be made
-    document.body.setAttribute('moveInProgress', false);
+    //document.body.setAttribute('moveInProgress', false);
     this.initiateBotMove();
     return true;
   }
