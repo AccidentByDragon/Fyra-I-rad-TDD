@@ -1,6 +1,7 @@
 import Cell from './Cell.js'
 import sleep from './helpers/sleep.js';
 import WinChecker from './WinChecker.js';
+import Network from './helpers/Network.js';
 
 // Game sounds
 const playSound = new Audio('../public/sounds/plasticPlop.mp3');
@@ -25,15 +26,15 @@ export default class Board {
     this.isADraw = false;
     this.gameOver = false;
     this.winningCombo = null; //byt till []?
-    this.winningCombo = null; //byt till []?
+    //this.winningCombo = null; //byt till []?
     this.latestMove = [];
   }
 
   // render = output/draw something
   render() {
     // then call the app render method
-    globalThis.makeMoveOnClick = async (column) =>
-      (await this.makeMove(this.currentPlayerColor, column))
+    globalThis.makeMoveOnClick = (column) =>
+       this.makeMove(this.currentPlayerColor, column, true)
       && this.app.render();
 
     // so we can apply different styling depending on them
@@ -57,9 +58,20 @@ export default class Board {
     </div>`;
   }
 
-  async makeMove(color, column) {
+  //async makeMove(color, column, fromClick) {
+  makeMove(color, column, fromClick) {
+    let player = color === 'Red' ? this.app.playerRed : this.app.playerYellow;
 
-    if (document.body.getAttribute('moveInProgress') === 'true') { return; }
+    //if (document.body.getAttribute('moveInProgress') === 'true') { return; }
+
+    //in Tomas code
+    //
+     // don't allow move fromClick if it's network play and not myColor
+     if (fromClick && this.app.networkPlay && color !== this.app.myColor) {
+      return false;
+    }
+    // don't allow move fromCLick if it's a bots turn to play
+    if (fromClick && player.type !== 'Human') { return false; }
     // Don't make any move if the game is over
     if (this.gameOver) { return false; }
 
@@ -78,13 +90,13 @@ export default class Board {
     if (this.matrix[0][column].color !== ' ') { return false; }
 
     // Find the lowest available row in the chosen column
-    document.body.setAttribute('moveInProgress', true);
+    //document.body.setAttribute('moveInProgress', true);
     this.latestMove = [];
     let row = 0;
     while (row < 6 && this.matrix[row][column].color === ' ') {
       this.matrix[row][column].color = this.currentPlayerColor;
       this.app.render();
-      await sleep(50);
+       //sleep(50);
       this.matrix[row][column].color = ' '
       row++;
     }
@@ -96,18 +108,25 @@ export default class Board {
     //Plays the drop sound
     playSound.play();
 
+    // Render only after the move is finalized
+    this.app.render();
     // Check if someone has won or if it's a draw/tie and update properties
     this.winner = this.winCheck();
     this.isADraw = this.drawCheck();
 
     // The game is over if someone has won or if it's a draw
     this.gameOver = !!(this.winner || this.isADraw);
+
+// if network play then send the move
+    this.app.networkPlay && this.app.myColor === color &&
+    Network.send({ color, column });
+
     // Change the current player color
     !this.gameOver
       && (this.currentPlayerColor = this.currentPlayerColor === 'Red' ? 'Yellow' : 'Red');
 
     // Return true if the move could be made
-    document.body.setAttribute('moveInProgress', false);
+    //document.body.setAttribute('moveInProgress', false);
     this.initiateBotMove();
     return true;
   }
@@ -136,10 +155,10 @@ export default class Board {
     let player = this.currentPlayerColor === 'Red' ? this.app.playerRed : this.app.playerYellow;
     // if the game isn't over and the player exists and the player is non-human / a bot
     if (!this.gameOver && player && player.type !== 'Human') {
-      document.body.classList.add('botPlaying');
+      document.body.classList.add('notMyTurn');
       await player.makeBotMove();
       this.app.render();
-      document.body.classList.remove('botPlaying');
+      document.body.classList.remove('notMyTurn');
     }
   }
 
