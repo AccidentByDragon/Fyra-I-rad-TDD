@@ -1,21 +1,22 @@
 {
-  "name": "fyra-i-rad-tdd",
+  "name": "fyra-i-rad",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "Skapa logiken för ett fungerande Fyra i rad-spel (för två människospelare vid samma dator) - inget grafiskt gränssnitt.\r Arbeta enligt TDD (Test Driven Development) - bryt ner varje user story till deljarade tasks - dvs. detaljerade specifikationer av vilka klasser och metoder som ska skapas och hur de ska fungera. Skriv heltäckande enhetstester innan motsvarande programlogik.\r Arbeta objektorienterat i JavaScript och med Vitest/Jest som testverktyg.\r ### EPICS i kommande sprinter:\r #### Sprint 2: Skapa ett grafiskt användargränssnitt och testa det.\r #### Sprint 3: Skapa en regelbaserad AI och testa den.\r #### Sprint 4: Lägg till möjlighet att spela över nätverk och testa denna funktionalitet.",
-  "main": "index.js",
   "scripts": {
     "start": "vite",
     "test": "vitest",
+    "test-cypress": "cypress run --browser chrome",
+    "test-cypress-ui": "cypress open --browser chrome",
+    "make-steps": "node _auto-generate-step-definitions.cjs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "12.2",
+    "@cypress/webpack-preprocessor": "5.12",
+    "cypress": "10.7",
     "happy-dom": "^15.7.3",
     "vite": "^5.4.1",
     "vitest": "^2.0.5"
@@ -23,7 +24,12 @@
   "dependencies": {
     "express": "^4.19.2"
   },
-  "directories": {
-    "test": "tests"
+  "cypress-cucumber-preprocessor": {
+    "json": {
+      "enabled": true
+    },
+    "stepDefinitions": [
+      "/specs/step_definitions/**/*.js"
+    ]
   }
 }
