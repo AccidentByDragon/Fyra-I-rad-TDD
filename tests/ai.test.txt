@@ -49,10 +49,4 @@ test('Externa test to our own smart bot external bot goes first', async () => {
 }, 100000)
 
 
-    getIframeBody('iframe#Red').find('.cell[data-column="0"]').should('be.visible').click({ force: true });
-
     
-    // Simulating a move in the first column
-    getIframeBody('iframe#Red').find('.cell[data-column="0"]').eq(5).click({ force: true }); 
-    getIframeBody('iframe#Yellow').get('[data-col="1"]').eq(4).click({ force: true }); 
-
