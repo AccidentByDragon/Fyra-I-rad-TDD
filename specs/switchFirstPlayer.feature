@@ -1,5 +1,8 @@
 Feature: Switch first player when clicking "Play again"
 
+  Scenario: Start a game
+    Given that game is played bla bla bla
+
   Scenario: The second player becomes the first player in the next game
     Given that a game has ended
     When the players choose to play again
