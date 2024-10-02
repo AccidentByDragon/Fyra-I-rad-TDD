@@ -26,16 +26,26 @@ Given('game is tarted by joining the nerwrok', () => {
 
   Then('players make their moves till someone has won', () => {
 
-
-    getIframeBody('iframe#Red').find('.cell[data-column="0"]').should('be.visible');
-
+    cy.wait(4000);  // Wait for UI update
+    getIframeBody('iframe#Red').find('.cell:nth-child(39)').should('exist').click();
+    cy.wait(4000);  // Wait for UI update
+    getIframeBody('iframe#Yellow').find('.cell:nth-child(38)').should('exist').click();
+    cy.wait(4000);
+    getIframeBody('iframe#Red').find('.cell:nth-child(32)').should('exist').click();
+    cy.wait(4000);  // Wait for UI update
+    getIframeBody('iframe#Yellow').find('.cell:nth-child(37)').should('exist').click();
+    cy.wait(4000)
+    getIframeBody('iframe#Red').find('.cell:nth-child(25)').should('exist').click();
+    cy.wait(4000);  // Wait for UI upda
     
-    // Simulating a move in the first column
-    getIframeBody('iframe#Red').find('.cell[data-column="0"]').eq(5).click({ force: true }); 
-    getIframeBody('iframe#Yellow').get('[data-col="1"]').eq(4).click({ force: true }); 
+    
+    getIframeBody('iframe#Yellow').find('.cell:nth-child(36)').should('exist').click();
+    cy.wait(4000)
+    getIframeBody('iframe#Red').find('.cell:nth-child(18)').should('exist').click();
+  cy.wait(4000);  // Wait for UI update
+getIframeBody('iframe#Yellow').find('.cell:nth-child(36)').should('exist').click();
 
-
-  });
+});
   
 
 
