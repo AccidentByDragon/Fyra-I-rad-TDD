@@ -27,5 +27,7 @@ Given('that we are two players and one creates a game and one joins it', () => {
 Then('we should both see that its the first players turn', () => {
   // Expect both players to have 'X: Anna's turn...' displayed on their screens
   getIframeBody('iframe#Red').find('p:contains("Red: Anna\'s turn...")');
+  cy.wait(5000);
   getIframeBody('iframe#Yellow').find('p:contains("Red: Anna\'s turn...")');
+ 
 });
