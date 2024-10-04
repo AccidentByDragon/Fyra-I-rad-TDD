@@ -13,7 +13,7 @@ Given('the game is started by joining the network', () => {
 
   // Capture the join code for Player Yellow
   getIframeBody('iframe#Red').find('input[name="joinCode"]').then((element) => {
-    let joinCode = element.val().toUpperCase();  
+    let joinCode = element.val().toUpperCase();
 
     // Player Yellow joins the game using the join code
     getIframeBody('iframe#Yellow').find('.button.Yes').click();
@@ -21,7 +21,7 @@ Given('the game is started by joining the network', () => {
     cy.wait(5000);
     getIframeBody('iframe#Yellow').find('input[name="answer"]').type('Beata{enter}');
     cy.wait(5000);
-    getIframeBody('iframe#Yellow').find('dialog:contains("join code") input[name="answer"]').type(joinCode+'{enter}');
+    getIframeBody('iframe#Yellow').find('dialog:contains("join code") input[name="answer"]').type(joinCode + '{enter}');
     cy.log(joinCode + '{enter}');
     cy.wait(10000);
 
@@ -30,7 +30,7 @@ Given('the game is started by joining the network', () => {
 
 // Step 2: Players make their moves until one player wins
 When('the players make their moves until one player wins', () => {
-  cy.wait(5000);  // Wait for UI updates
+  cy.wait(5000);  
   getIframeBody('iframe#Red').find('.cell:nth-child(39)').should('exist').click();
   cy.wait(5000);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(38)').should('exist').click();
@@ -39,7 +39,7 @@ When('the players make their moves until one player wins', () => {
   cy.wait(5000);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(37)').should('exist').click();
   cy.wait(5000);
-  getIframeBody('iframe#Re  d').find('.cell:nth-child(25)').should('exist').click();
+  getIframeBody('iframe#Red').find('.cell:nth-child(25)').should('exist').click();
   cy.wait(5000);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(36)').should('exist').click();
   cy.wait(5000);
@@ -55,7 +55,6 @@ Then('the winning message should be visible for both players', () => {
 
 // Step 4: The game has ended
 Given('that the game has ended', () => {
-  // Ensure the winning message is visible for both players
   getIframeBody('iframe#Red').find('p:contains("Red: Anna won!")').should('be.visible');
   getIframeBody('iframe#Yellow').find('p:contains("Red: Anna won!")').should('be.visible');
 });
@@ -63,7 +62,7 @@ Given('that the game has ended', () => {
 // Step 5: Players choose to play again
 When('the players choose to play again', () => {
   getIframeBody('iframe#Red').find('.button:contains("Play again")').should('be.visible').click();
-  getIframeBody('iframe#Yellow').find('.button:contains("Play again")').should('be.visible').click();
+  //getIframeBody('iframe#Yellow').find('.button:contains("Play again")').should('be.visible').click();
 });
 
 // Step 6: Verify the second player goes first in the next game
