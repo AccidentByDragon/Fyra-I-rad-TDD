@@ -22,3 +22,12 @@ Given('We have started a game', () => {
       .type(joinCode + '{enter}');
   });
 });
+
+Then('We should be able to see the Titles', () => {
+  // check that the h1 displays the right thing on both screens
+  getIframeBody('iframe#Red').find('h1:contains("Four in a Row")');
+  getIframeBody('iframe#Yellow').find('h1:contains("Four in a Row")');
+  // Expect both players to have 'Red: Anna's turn...' displayed on their screens
+  getIframeBody('iframe#Red').find('p:contains("Red: Anna\'s turn...")');
+  getIframeBody('iframe#Yellow').find('p:contains("Red: Anna\'s turn...")');
+});
