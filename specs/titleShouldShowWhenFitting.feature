@@ -7,3 +7,6 @@ Feature: Titles should show duriong network play
 
     Scenario: We should be able to titles
         Then We should be able to see the Titles
+
+    Scenario: We should see titles after making moves
+        Then after some moves all titles should be correct
