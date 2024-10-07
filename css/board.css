@@ -105,3 +105,18 @@ body[gameInProgress="true"] {
     opacity: 0.5;
   }
 }
+
+
+
+@media screen and (max-width: 540px) {
+  .board { 
+    width: 350px; 
+    height: 286px;
+    padding-right:0;
+  }
+    .cell {
+    width: 40px;
+    height: 40px;
+    margin: 0.5px 2.5px;
+  }
+}
