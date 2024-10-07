@@ -68,7 +68,7 @@ export default class App {
         this.enteredJoinCode = code;
         Network.startConnection(name, code, obj => this.networkListener(obj));
         extra = '<br>Incorrect join code... Try again...';
-        await sleep(500);
+        await sleep(5000);
       }
     }
     // create players
