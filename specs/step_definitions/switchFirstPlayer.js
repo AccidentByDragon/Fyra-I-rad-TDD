@@ -13,7 +13,8 @@ Given('the game is started by joining the network', () => {
 
   
   getIframeBody('iframe#Red').find('input[name="joinCode"]').then((element) => {
-    let joinCode = element.val().toUpperCase();
+    let joinCode = element.val();
+    cy.log('joinCode', joinCode);
 
     
     getIframeBody('iframe#Yellow').find('.button.Yes').click();
@@ -22,7 +23,7 @@ Given('the game is started by joining the network', () => {
     getIframeBody('iframe#Yellow').find('input[name="answer"]').type('Beata{enter}');
     cy.wait(5000);
     getIframeBody('iframe#Yellow').find('dialog:contains("join code") input[name="answer"]').type(joinCode + '{enter}');
-    cy.log(joinCode + '{enter}');
+    //cy.log(joinCode + '{enter}');
     cy.wait(10000);
 
   });
