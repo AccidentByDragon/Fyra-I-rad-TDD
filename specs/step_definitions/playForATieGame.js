@@ -5,7 +5,7 @@ Given('that we have started a network game', () => {
   cy.visit('/iframed-network-play.html');
 
 });
-
+ 
 Given('that Anna and Beata is registrated as players', () => {
 
   // Anna join the game
