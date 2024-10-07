@@ -1,8 +1,6 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { getIframeBody } from '../helpers/iframe.js';
 
-let cyWaitTime = 600;
-
 Given('We have started a game', () => {
   // visit the 'helper' we set up with two iframes
   // where each iframe emulates one player in a network
@@ -35,6 +33,8 @@ Then('We should be able to see the Titles', () => {
 });
 
 Then('after some moves all titles should be correct', () => {
+  let cyWaitTime = 600;
+  cy.wait(cyWaitTime);
   //First move - Red: Anna
   getIframeBody('iframe#Red')
     .find('.cell:nth-child(36)')
