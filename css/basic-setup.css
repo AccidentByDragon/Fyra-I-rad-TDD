@@ -34,3 +34,10 @@ body {
 main {
   margin: auto;
 }
+
+@media (max-width: 540px) {
+  .table {
+    margin-top: -10vh;
+    height: 60vh;
+  }
+}
