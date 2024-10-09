@@ -39,13 +39,13 @@ export default class App {
   async askIfNetworkPlay() {
     this.networkPlay = (await this.dialog.ask(
       `Network Play: Do you want to play<br>against a friend via the Internet?`, ['Yes', 'No'])) === 'Yes';
-    await sleep(500);
+    await sleep(1000);
     if (!this.networkPlay) { return; }
     let startNetworkPlay = (await this.dialog.ask(
       'Do you want to create a new network game? Or join one?', ['Create', 'Join'])) === 'Create';
-    await sleep(500);
+    await sleep(1000);
     let name = await this.dialog.ask('Enter your name:');
-    await sleep(500);
+    await sleep(1000);
     if (startNetworkPlay) {
       this.myColor = 'Red';
       let code = generateCode();
@@ -56,7 +56,7 @@ export default class App {
           `Send the following join code to your friend:<br>
           <input type="text" name="joinCode" readonly value="${code}">${extra}`, ['OK']);
         extra = '<br>Waiting for your friend to join...'
-        await sleep(500);
+        await sleep(1000);
       }
     }
     else {
