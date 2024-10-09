@@ -38,6 +38,6 @@ main {
 @media (max-width: 540px) {
   .table {
     margin-top: -10vh;
-    height: 10vh;
+    height: 38vh;
   }
 }
