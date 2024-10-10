@@ -94,3 +94,10 @@ dialog {
     }
   }
 }
+
+@media (max-width: 540px) {
+  .dialog-content {
+    /* display: none; */
+  }
+
+}
