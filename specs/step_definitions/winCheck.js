@@ -65,6 +65,7 @@ Then('players make their moves until someone wins on a horizontal line', () => {
 Then('the winning message should be visible for both players, try to check sound as well', () => {
   getIframeBody('iframe#Red').find('p:contains("Red: Anna won!")');
   getIframeBody('iframe#Yellow').find('p:contains("Red: Anna won!")');
+  cy.wait(3000);
 });
 
 
@@ -105,4 +106,5 @@ Then('players make their moves until someone wins on a diagonal line', () => {
 Then('the winning message that youllow wills should be visible for both players', () => {
   getIframeBody('iframe#Red').find('p:contains("Yellow: Beata won!")');
   getIframeBody('iframe#Yellow').find('p:contains("Yellow: Beata won!")');
+  cy.wait(3000);
 });
