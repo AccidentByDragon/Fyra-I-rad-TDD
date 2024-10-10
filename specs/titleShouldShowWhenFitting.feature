@@ -1,4 +1,4 @@
-Feature: Titles should show duriong network play
+Feature: Titles should show during network play
 
     Feature Description feature
     

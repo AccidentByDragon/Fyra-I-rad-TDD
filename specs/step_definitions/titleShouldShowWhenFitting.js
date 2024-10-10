@@ -33,7 +33,7 @@ Then('We should be able to see the Titles', () => {
 });
 
 Then('after some moves all titles should be correct', () => {
-  let cyWaitTime = 600;
+  let cyWaitTime = 3000;
   cy.wait(cyWaitTime);
   //First move - Red: Anna
   getIframeBody('iframe#Red')
