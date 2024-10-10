@@ -16,12 +16,12 @@
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "12.2",
     "@cypress/webpack-preprocessor": "5.12",
-    "cypress": "10.7",
     "happy-dom": "^15.7.3",
     "vite": "^5.4.1",
     "vitest": "^2.0.5"
   },
   "dependencies": {
+    "cypress": "^10.11.0",
     "express": "^4.19.2"
   },
   "cypress-cucumber-preprocessor": {
