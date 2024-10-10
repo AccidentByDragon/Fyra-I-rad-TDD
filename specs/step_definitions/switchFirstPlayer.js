@@ -2,7 +2,7 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { getIframeBody } from '../helpers/iframe.js';
 
 
-Given('the game is started by joining the network', () => {
+Given('the game starts by joining the network', () => {
   cy.visit('/iframed-network-play.html');  // Visit the helper page with iframes
 
   //Red starts the game
