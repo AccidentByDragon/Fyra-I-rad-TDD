@@ -67,7 +67,8 @@ export default class Board {
     //in Tomas code
     //
      // don't allow move fromClick if it's network play and not myColor
-     if (fromClick && this.app.networkPlay && color !== this.app.myColor) {
+    if (fromClick && this.app.networkPlay && color !== this.app.myColor) {
+      alert(this.app.myColor + ': It is not your turn');
       return false;
     }
     // don't allow move fromCLick if it's a bots turn to play
