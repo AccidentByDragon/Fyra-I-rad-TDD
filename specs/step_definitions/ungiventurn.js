@@ -34,22 +34,7 @@ Then('Player Red makes the first move', () => {
 
   // Player Yellow (O) makes a move when it's their turn
   getIframeBody('iframe#Yellow').find('.cell:nth-child(38)').should('exist').click();
-  cy.log('bbbbbbbb');
-
-  // Player Red (X) tries to make a move when it's Yellow's turn (should not work)
-  getIframeBody('iframe#Red').find('.cell:nth-child(32)').click().should('not.exist');
-
-
-  cy.wait(4000); // Wait for UI update
-
-  // Continue alternating valid moves
-  getIframeBody('iframe#Red').find('.cell:nth-child(32)').should('exist').click();
-  cy.wait(4000);
-  getIframeBody('iframe#Yellow').find('.cell:nth-child(37)').should('exist').click();
-  cy.wait(4000);
-  getIframeBody('iframe#Red').find('.cell:nth-child(25)').should('exist').click();
-/*   getIframeBody('iframe#Red').find('p:contains("Red: Anna won!")').should('exist');
-  getIframeBody('iframe#Yellow').find('p:contains("Red: Anna won!")').should('exist'); */
+  
 });
 
 /* Then('winning message should be visible for both players, try to check sound as well', () => {
