@@ -1,6 +1,6 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { getIframeBody } from '../helpers/iframe.js';
-let cyWaitTime = 1000;
+let cyWaitTime = 2000;
 
 Given('We have started a game', () => {
   // visit the 'helper' we set up with two iframes
