@@ -9,25 +9,23 @@ Given('We have started a game', () => {
 
   // player X - first player - start network game and get code
   getIframeBody('iframe#Red').find('.button.Yes').click();
-  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.button.Create').click();
-  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('input[name="answer"]').type('Anna{enter}');
   cy.wait(cyWaitTime);
+
   getIframeBody('iframe#Red').find('input[name="joinCode"]').then(element => {
     // we have the join code
     let joinCode = element.val();
 
     // player O - second player join the game
-    cy.wait(cyWaitTime);
     getIframeBody('iframe#Yellow').find('.button.Yes').click();
-    cy.wait(cyWaitTime);
     getIframeBody('iframe#Yellow').find('.button.Join').click();
     cy.wait(cyWaitTime);
     getIframeBody('iframe#Yellow').find('input[name="answer"]').type('Beata{enter}');
     cy.wait(cyWaitTime);
     getIframeBody('iframe#Yellow').find('dialog:contains("join code") input[name="answer"]')
       .type(joinCode + '{enter}');
+    cy.wait(2000);
   });
 });
 
