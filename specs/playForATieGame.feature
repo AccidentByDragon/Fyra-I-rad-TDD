@@ -1,8 +1,10 @@
 Feature: Play until the game is a tie
   As two gamers participate in a network game and the continue playing until the board is a full plate without a win
 
+  Background: We have started a game
+    Given We have started a game
+
   Scenario: Play the game 
-    Given that we have started a network game
     And that Anna and Beata is registrated as players
     And we can see that its Annas turn to make a move
 

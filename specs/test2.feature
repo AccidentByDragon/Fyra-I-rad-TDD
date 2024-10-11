@@ -3,8 +3,10 @@ Feature: Network Game Play with Turn Management
   As a player
   I want to ensure that players can only make moves during their own turns and that the game displays the correct winning message.
 
+  Background: We have started a game
+    Given We have started a game
+
   Scenario: Players take turns making valid moves
-    Given game is started by joining the network
     Then Player Red makes the first move
     
 

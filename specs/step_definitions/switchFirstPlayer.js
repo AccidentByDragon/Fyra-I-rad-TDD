@@ -1,35 +1,11 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { getIframeBody } from '../helpers/iframe.js';
+let cyWaitTime = 2000;
 
 
-Given('the game starts by joining the network', () => {
-  cy.visit('/iframed-network-play.html');  // Visit the helper page with iframes
+/* No duplicate steps, this one already in playForATieGame.js
+Given('We have started a game', () => {});*/
 
-  //Red starts the game
-  getIframeBody('iframe#Red').find('.button.Yes').click();
-  getIframeBody('iframe#Red').find('.button.Create').click();
-  getIframeBody('iframe#Red').find('input[name="answer"]').type('Anna{enter}');
-  cy.wait(5000);
-
-  
-  getIframeBody('iframe#Red').find('input[name="joinCode"]').then((element) => {
-    let joinCode = element.val();
-    cy.log('joinCode', joinCode);
-
-    
-    getIframeBody('iframe#Yellow').find('.button.Yes').click();
-    getIframeBody('iframe#Yellow').find('.button.Join').click();
-    cy.wait(5000);
-    getIframeBody('iframe#Yellow').find('input[name="answer"]').type('Beata{enter}');
-    cy.wait(5000);
-    getIframeBody('iframe#Yellow').find('dialog:contains("join code") input[name="answer"]').type(joinCode + '{enter}');
-    //cy.log(joinCode + '{enter}');
-    cy.wait(10000);
-
-  });
-});
-
-// Step 2: Players make their moves until one player wins
 When('the players make their moves until one player wins', () => {
   cy.wait(5000);  
   getIframeBody('iframe#Red').find('.cell:nth-child(39)').should('exist').click();

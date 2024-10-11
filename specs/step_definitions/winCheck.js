@@ -1,60 +1,42 @@
-import { Given, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { getIframeBody } from '../helpers/iframe.js';
-
-// Common 'Given' step to initialize the game
-Given('the game is started by joining the network', () => {
-  cy.visit('/iframed-network-play.html');
-
-  // Player X (Red) starts the game and gets the code
-  getIframeBody('iframe#Red').find('.button.Yes').click();
-  getIframeBody('iframe#Red').find('.button.Create').click();
-  getIframeBody('iframe#Red').find('input[name="answer"]').type('Anna{enter}');
-  getIframeBody('iframe#Red').find('input[name="joinCode"]').then(element => {
-    let joinCode = element.val();
-
-    // Player O (Yellow) joins the game using the join code
-    getIframeBody('iframe#Yellow').find('.button.Yes').click();
-    getIframeBody('iframe#Yellow').find('.button.Join').click();
-    cy.wait(3000);
-    getIframeBody('iframe#Yellow').find('input[name="answer"]').type('Beata{enter}');
-    cy.wait(3000);
-    getIframeBody('iframe#Yellow').find('dialog:contains("join code") input[name="answer"]').type(joinCode + '{enter}');
-  });
-});
+let cyWaitTime = 3000;
+/* No duplicate steps, this one already in playForATieGame.js
+Given('We have started a game', () => {});*/
 
 Then('players make their moves until someone wins on a vertical line', () => {
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(39)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(38)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(32)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(37)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(25)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(36)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(18)').should('exist').click();
   
 });
 
 
 Then('players make their moves until someone wins on a horizontal line', () => {
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(42)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(38)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(41)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(37)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(40)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(36)').should('exist').click();
-  cy.wait(3000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(39)').should('exist').click();
   
 });

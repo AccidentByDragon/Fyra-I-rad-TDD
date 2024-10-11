@@ -1,27 +1,8 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { getIframeBody } from '../helpers/iframe.js';
-
-Given('We have started a game', () => {
-  // visit the 'helper' we set up with two iframes
-  // where each iframe emulates one player in a network
-  cy.visit('/iframed-network-play.html');
-
-  // player X - first player - start network game and get code
-  getIframeBody('iframe#Red').find('.button.Yes').click();
-  getIframeBody('iframe#Red').find('.button.Create').click();
-  getIframeBody('iframe#Red').find('input[name="answer"]').type('Anna{enter}');
-  getIframeBody('iframe#Red').find('input[name="joinCode"]').then(element => {
-    // we have the join code
-    let joinCode = element.val();
-
-    // player O - second player join the game
-    getIframeBody('iframe#Yellow').find('.button.Yes').click();
-    getIframeBody('iframe#Yellow').find('.button.Join').click();
-    getIframeBody('iframe#Yellow').find('input[name="answer"]').type('Beata{enter}');
-    getIframeBody('iframe#Yellow').find('dialog:contains("join code") input[name="answer"]')
-      .type(joinCode + '{enter}');
-  });
-});
+let cyWaitTime = 3000;
+/* No duplicate steps, this one already in playForATieGame.js
+Given('We have started a game', () => {});*/
 
 Then('We should be able to see the Titles', () => {
   // check that the h1 displays the right thing on both screens
@@ -30,10 +11,10 @@ Then('We should be able to see the Titles', () => {
   // Expect both players to have 'Red: Anna's turn...' displayed on their screens
   getIframeBody('iframe#Red').find('p:contains("Red: Anna\'s turn...")');
   getIframeBody('iframe#Yellow').find('p:contains("Red: Anna\'s turn...")');
+  cy.wait(cyWaitTime);
 });
 
 Then('after some moves all titles should be correct', () => {
-  let cyWaitTime = 3000;
   cy.wait(cyWaitTime);
   //First move - Red: Anna
   getIframeBody('iframe#Red')
@@ -54,4 +35,5 @@ Then('after some moves all titles should be correct', () => {
   // Expect both players to have 'Red: Anna's turn...' displayed on their screens
   getIframeBody('iframe#Red').find('p:contains("Red: Anna\'s turn...")');
   getIframeBody('iframe#Yellow').find('p:contains("Red: Anna\'s turn...")');
+  cy.wait(cyWaitTime);
 });

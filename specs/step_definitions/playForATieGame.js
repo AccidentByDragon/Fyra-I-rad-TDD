@@ -1,35 +1,34 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { getIframeBody } from '../helpers/iframe.js';
-
 let cyWaitTime = 1000;
 
-Given('that we have started a network game', () => {
+Given('We have started a game', () => {
+  // visit the 'helper' we set up with two iframes
+  // where each iframe emulates one player in a network
   cy.visit('/iframed-network-play.html');
 
-});
-
-Given('that Anna and Beata is registrated as players', () => {
-
-  // Anna join the game
+  // player X - first player - start network game and get code
   getIframeBody('iframe#Red').find('.button.Yes').click();
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.button.Create').click();
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('input[name="answer"]').type('Anna{enter}');
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('input[name="joinCode"]').then(element => {
-    // Copying the join-code ("val" equal to "Value")
+    // we have the join code
     let joinCode = element.val();
 
-    // Beata join the game
+    // player O - second player join the game
+    cy.wait(cyWaitTime);
     getIframeBody('iframe#Yellow').find('.button.Yes').click();
+    cy.wait(cyWaitTime);
     getIframeBody('iframe#Yellow').find('.button.Join').click();
+    cy.wait(cyWaitTime);
     getIframeBody('iframe#Yellow').find('input[name="answer"]').type('Beata{enter}');
+    cy.wait(cyWaitTime);
     getIframeBody('iframe#Yellow').find('dialog:contains("join code") input[name="answer"]')
       .type(joinCode + '{enter}');
   });
-});
-
-Given('we can see that its Annas turn to make a move', () => {
-  getIframeBody('iframe#Red').find('p:contains("Red: Anna\'s turn...")');
-  getIframeBody('iframe#Yellow').find('p:contains("Red: Anna\'s turn...")');
 });
 
 When('Anna and Beata plays the game until the board is a full plate, without any winning combinations', () => {

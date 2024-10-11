@@ -1,9 +1,0 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-
-Given('that we are two players and one creates a game and one joins it', () => {
-  // TODO: implement step
-});
-
-Then('we should both see that its the first players turn', () => {
-  // TODO: implement step
-});

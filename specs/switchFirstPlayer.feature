@@ -1,7 +1,9 @@
 Feature: Switch first player when clicking "Play again"
 
+  Background: We have started a game
+    Given We have started a game
+    
   Scenario: Play a full game
-    Given the game starts by joining the network
     When the players make their moves until one player wins
     Then the winning message should be visible for both players
 
