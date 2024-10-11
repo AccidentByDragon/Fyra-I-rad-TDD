@@ -1,27 +1,27 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { getIframeBody } from '../helpers/iframe.js';
-let cyWaitTime = 2000;
+let cyWaitTime = 5000;
 
 
 /* No duplicate steps, this one already in playForATieGame.js
 Given('We have started a game', () => {});*/
 
 When('the players make their moves until one player wins', () => {
-  cy.wait(5000);  
+  cy.wait(cyWaitTime);  
   getIframeBody('iframe#Red').find('.cell:nth-child(39)').should('exist').click();
-  cy.wait(5000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(38)').should('exist').click();
-  cy.wait(5000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(32)').should('exist').click();
-  cy.wait(5000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(37)').should('exist').click();
-  cy.wait(5000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(25)').should('exist').click();
-  cy.wait(5000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Yellow').find('.cell:nth-child(36)').should('exist').click();
-  cy.wait(5000);
+  cy.wait(cyWaitTime);
   getIframeBody('iframe#Red').find('.cell:nth-child(18)').should('exist').click();
-  cy.wait(5000); 
+  cy.wait(cyWaitTime); 
 });
 
 
