@@ -28,7 +28,11 @@ getIframeBody('iframe#Yellow').find('.cell:nth-child(36)').should('exist').click
 
 });
   
-
+Then('we should both see that its the first players turn', () => {
+  // Expect both players to have 'X: Anna's turn...' displayed on their screens
+  getIframeBody('iframe#Red').find('p:contains("Red: Anna\'s turn...")');
+  getIframeBody('iframe#Yellow').find('p:contains("Red: Anna\'s turn...")');
+});
 
   Then('winning message should be wisible for both players, try to check sound as well', () =>{
     getIframeBody('iframe#Red').find('p:contains("Red: Anna won!")');
