@@ -7,23 +7,23 @@ this branch was focused on creating and testing a bot against an external bot
 ## Test
 The tests are designed to determine the intelligence of the bot by letting it play moves against an external bot by feeding its moves into the game with an external bot and returnign and playing the same move as the external bot;
 The different tests are to compare the different bots we made against external bots
-TEST 4A: TESTS FOR THE SYSTEM THAT DETERMINES IF SOMEONE HAS WON
 
 # More in Depth
-## Step 1: Identify win conditions
+## TEST 4A: TESTS FOR THE SYSTEM THAT DETERMINES IF SOMEONE HAS WON
+### Step 1: Identify win conditions
 A player wins the game if they have four of their pieces in a row, horizontally, vertically, or diagonally on the game board.
 
-## Step 2: Write unit tests
-### Test 1: Horizontal win
+### Step 2: Write unit tests
+#### Test 1: Horizontal win
 A scenario where a player has four of their pieces horizontally in a row. Expected result: The system should identify that the player has won.
 
-### Test 2: Vertical win
+#### Test 2: Vertical win
 A scenario where a player has four of their pieces vertically in a column. Expected result: The system should identify that the player has won.
 
-### Test 3: Diagonal win (from left to right)
+#### Test 3: Diagonal win (from left to right)
 A scenario where a player has four of their pieces diagonally from the bottom left to the top right. Expected result: The system should identify that the player has won.
 
-### Test 4: Diagonal win (from right to left)
+#### Test 4: Diagonal win (from right to left)
 A scenario where a player has four of their pieces diagonally from the bottom right to the top left. Expected result: The system should identify that the player has won.
 
 ## TEST 4B: THE PROGRAM MUST KNOW IF SOMEONE HAS WON
@@ -51,13 +51,19 @@ Create a scenario where there is no win. Expected result: The system should retu
 ### Step 3: Implement and run tests
 Implement the logic necessary to identify and return the winning player. Be sure to run all tests to verify that the new changes work as intended.
 
-Example from our branch, in Thomas' express "dependencies":
+Example from our branch, in express "dependencies":
 
 json
 Copy
 "dependencies": {
   "prompt-sync": "^4.2.0"
 }
+## Test Sprint 3
+### Smart bot always wins against the dumb bot.
+Allow the Smart bot to play against the dumb bot that randomly picks moves by selecting both as options in the startup
+When the game is over the smart should win no matter which bot starts, as it is actively trying to create four in a row.
+### Smart bot should lsoe against the even smarter online bot.
+Inorder to compare how smart the bot is we allow it too play against a online bot, our smart bot should be able tod raw against the lower difficulties but lose against harder bots, in the case of the bots being equally intelligence the bot that played the first mvoe should win.
 ## Manual Tests:
 Test that a name can be entered for Player Red.
 Test that a name can be entered for Player Yellow.
@@ -80,5 +86,3 @@ Quit game (three different options): continue the game - test that the game cont
 "Play again" starts the game over with the same players (choosing the opposite player will let them start just like at game over). Same test as Test 5.
 "Reset the game" - Test that the game restarts with new players. (Change the text "reset the game" to something clearer.)
 When no more moves are possible and no one has won, it should be a draw (it’s a tie).
-Test Sprint 3
-Smart bot always wins against dumb.
