@@ -66,23 +66,42 @@ When the game is over the smart should win no matter which bot starts, as it is 
 Inorder to compare how smart the bot is we allow it too play against a online bot, our smart bot should be able tod raw against the lower difficulties but lose against harder bots, in the case of the bots being equally intelligence the bot that played the first mvoe should win.
 ## Manual Tests:
 Test that a name can be entered for Player Red.
+
 Test that a name can be entered for Player Yellow.
+
 Test that the piece is the first player's color.
+
 Test that it switches to the second player's color.
+
 Test that a piece can only be placed in an empty slot.
+
 When someone wins, the game should notify that someone has won.
+
 When someone has won, the four pieces in a row should be "clearly" visible by blinking 5 times and playing a sound.
+
 When clicking "Play again," the game should SHOW that the first player switches - the second player becomes first.
+
 Consistent use of correct language (English as the language).
+
 When clicking "Quit game," three different options should be visible.
+
 The game should indicate when the game is a draw.
+
 ## Automatic Tests:
 Make a move as Player Red.
+
 Make a move as Player Yellow.
+
 Test that the piece falls to the lowest empty row and, even if you click on an occupied piece, it falls in the correct row.
+
 The correct winner is identified and displayed by the game.
+
 When clicking "Play again," the first player switches - the second player becomes first.
+
 Quit game (three different options): continue the game - test that the game continues with the same players at the paused point.
+
 "Play again" starts the game over with the same players (choosing the opposite player will let them start just like at game over). Same test as Test 5.
+
 "Reset the game" - Test that the game restarts with new players. (Change the text "reset the game" to something clearer.)
+
 When no more moves are possible and no one has won, it should be a draw (it’s a tie).
